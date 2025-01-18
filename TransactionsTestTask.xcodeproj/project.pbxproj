@@ -134,13 +134,10 @@
 		1CA3B6542D22B0F500176711 /* TransactionsTestTask */ = {
 			isa = PBXGroup;
 			children = (
-				0DF1D13E2D22DC2D001626E7 /* Services */,
-				1CA3B6552D22B0F500176711 /* AppDelegate.swift */,
-				1CA3B6572D22B0F500176711 /* SceneDelegate.swift */,
-				1CA3B6592D22B0F500176711 /* ViewController.swift */,
-				1CA3B65B2D22B0F500176711 /* Main.storyboard */,
-				1CA3B6612D22B0F600176711 /* Assets.xcassets */,
-				1CA3B6632D22B0F600176711 /* LaunchScreen.storyboard */,
+				793B22942D3BDFCC00720058 /* Source */,
+				793B22932D3BDFB200720058 /* InitialDelegates */,
+				793B22922D3BDF7E00720058 /* LaunchFlow */,
+				793B22912D3BDF7300720058 /* Assets */,
 				1CA3B6662D22B0F600176711 /* Info.plist */,
 				1CA3B65E2D22B0F500176711 /* TransactionsTestTask.xcdatamodeld */,
 			);
@@ -153,6 +150,41 @@
 				1CA3B66F2D22B0F600176711 /* TransactionsTestTaskTests.swift */,
 			);
 			path = TransactionsTestTaskTests;
+			sourceTree = "<group>";
+		};
+		793B22912D3BDF7300720058 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				1CA3B6612D22B0F600176711 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		793B22922D3BDF7E00720058 /* LaunchFlow */ = {
+			isa = PBXGroup;
+			children = (
+				1CA3B6592D22B0F500176711 /* ViewController.swift */,
+				1CA3B65B2D22B0F500176711 /* Main.storyboard */,
+				1CA3B6632D22B0F600176711 /* LaunchScreen.storyboard */,
+			);
+			path = LaunchFlow;
+			sourceTree = "<group>";
+		};
+		793B22932D3BDFB200720058 /* InitialDelegates */ = {
+			isa = PBXGroup;
+			children = (
+				1CA3B6552D22B0F500176711 /* AppDelegate.swift */,
+				1CA3B6572D22B0F500176711 /* SceneDelegate.swift */,
+			);
+			path = InitialDelegates;
+			sourceTree = "<group>";
+		};
+		793B22942D3BDFCC00720058 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				0DF1D13E2D22DC2D001626E7 /* Services */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
