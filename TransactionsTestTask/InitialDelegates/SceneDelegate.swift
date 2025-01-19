@@ -47,17 +47,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
+// MARK: SceneDelegate extention
+
 extension SceneDelegate {
+    
+    // MARK: creating window
     
     private func createWindow(with scene: UIScene) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        let mainViewController = UIViewController()
-        mainViewController.view.backgroundColor = .cyan
-        let navigationController = UINavigationController(rootViewController: mainViewController)
-        
-        window.rootViewController = navigationController
+        let rootViewController = self.initializedViewController()
+        let coordinator = self.initializedCoordinator(with: rootViewController)
+        window.rootViewController = coordinator
         self.window = window
         window.makeKeyAndVisible()
+    }
+    
+    private func initializedViewController() -> UIViewController {
+        let viewModel = MainViewModelImpl()
+        let viewController = MainViewController<MainViewModelImpl>()
+        viewController.attach(with: viewModel)
+        
+        return viewController
+    }
+    
+    private func initializedCoordinator(with viewController: UIViewController) -> UINavigationController {
+        let viewModel = AppCoordinatorViewModelImpl()
+        let coordinator = AppCoordinator<AppCoordinatorViewModelImpl>(rootViewController: viewController)
+        coordinator.attach(with: viewModel)
+        coordinator.start()
+        
+        return coordinator
     }
 }

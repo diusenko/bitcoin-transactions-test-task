@@ -18,6 +18,13 @@
 		1CA3B6622D22B0F600176711 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CA3B6612D22B0F600176711 /* Assets.xcassets */; };
 		1CA3B6652D22B0F600176711 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 1CA3B6642D22B0F600176711 /* Base */; };
 		1CA3B6702D22B0F600176711 /* TransactionsTestTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA3B66F2D22B0F600176711 /* TransactionsTestTaskTests.swift */; };
+		792341B72D3D471700EDF716 /* AppCoordinatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792341B62D3D471500EDF716 /* AppCoordinatorViewModel.swift */; };
+		792341B92D3D477800EDF716 /* Attachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792341B82D3D477100EDF716 /* Attachable.swift */; };
+		792341BC2D3D7C5E00EDF716 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792341BB2D3D7C5C00EDF716 /* BaseViewController.swift */; };
+		793B22992D3BE34F00720058 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B22982D3BE34D00720058 /* AppCoordinator.swift */; };
+		793B229C2D3BE63300720058 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B229B2D3BE62B00720058 /* MainViewController.swift */; };
+		793B229E2D3BE63E00720058 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B229D2D3BE63800720058 /* MainViewModel.swift */; };
+		79ACBF5B2D3D2B7A00EB9968 /* Eventable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ACBF5A2D3D2B7A00EB9968 /* Eventable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +60,13 @@
 		1CA3B66B2D22B0F600176711 /* TransactionsTestTaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransactionsTestTaskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CA3B66F2D22B0F600176711 /* TransactionsTestTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsTestTaskTests.swift; sourceTree = "<group>"; };
 		1CA3B6752D22B0F600176711 /* TransactionsTestTaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TransactionsTestTaskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		792341B62D3D471500EDF716 /* AppCoordinatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorViewModel.swift; sourceTree = "<group>"; };
+		792341B82D3D477100EDF716 /* Attachable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachable.swift; sourceTree = "<group>"; };
+		792341BB2D3D7C5C00EDF716 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		793B22982D3BE34D00720058 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		793B229B2D3BE62B00720058 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		793B229D2D3BE63800720058 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		79ACBF5A2D3D2B7A00EB9968 /* Eventable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eventable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +146,7 @@
 			children = (
 				793B22942D3BDFCC00720058 /* Source */,
 				793B22932D3BDFB200720058 /* InitialDelegates */,
-				793B22922D3BDF7E00720058 /* LaunchFlow */,
+				793B22922D3BDF7E00720058 /* Launch */,
 				793B22912D3BDF7300720058 /* Assets */,
 				1CA3B6662D22B0F600176711 /* Info.plist */,
 				1CA3B65E2D22B0F500176711 /* TransactionsTestTask.xcdatamodeld */,
@@ -148,6 +162,32 @@
 			path = TransactionsTestTaskTests;
 			sourceTree = "<group>";
 		};
+		792341B42D3D41A300EDF716 /* MainFlow */ = {
+			isa = PBXGroup;
+			children = (
+				793B229D2D3BE63800720058 /* MainViewModel.swift */,
+				793B229B2D3BE62B00720058 /* MainViewController.swift */,
+			);
+			path = MainFlow;
+			sourceTree = "<group>";
+		};
+		792341B52D3D46E900EDF716 /* AppCoordinator */ = {
+			isa = PBXGroup;
+			children = (
+				792341B62D3D471500EDF716 /* AppCoordinatorViewModel.swift */,
+				793B22982D3BE34D00720058 /* AppCoordinator.swift */,
+			);
+			path = AppCoordinator;
+			sourceTree = "<group>";
+		};
+		792341BA2D3D7C4400EDF716 /* BaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				792341BB2D3D7C5C00EDF716 /* BaseViewController.swift */,
+			);
+			path = BaseViewController;
+			sourceTree = "<group>";
+		};
 		793B22912D3BDF7300720058 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,12 +196,12 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
-		793B22922D3BDF7E00720058 /* LaunchFlow */ = {
+		793B22922D3BDF7E00720058 /* Launch */ = {
 			isa = PBXGroup;
 			children = (
 				1CA3B6632D22B0F600176711 /* LaunchScreen.storyboard */,
 			);
-			path = LaunchFlow;
+			path = Launch;
 			sourceTree = "<group>";
 		};
 		793B22932D3BDFB200720058 /* InitialDelegates */ = {
@@ -176,9 +216,38 @@
 		793B22942D3BDFCC00720058 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				79ACBF552D3D2B3800EB9968 /* Protocols */,
 				0DF1D13E2D22DC2D001626E7 /* Services */,
+				793B22962D3BE32700720058 /* Coordinators */,
+				793B229A2D3BE61300720058 /* Flows */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		793B22962D3BE32700720058 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				792341B52D3D46E900EDF716 /* AppCoordinator */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		793B229A2D3BE61300720058 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				792341BA2D3D7C4400EDF716 /* BaseViewController */,
+				792341B42D3D41A300EDF716 /* MainFlow */,
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		79ACBF552D3D2B3800EB9968 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				792341B82D3D477100EDF716 /* Attachable.swift */,
+				79ACBF5A2D3D2B7A00EB9968 /* Eventable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,11 +383,18 @@
 				0D1540612D22EF5D00D6D63F /* AnalyticsEvent.swift in Sources */,
 				0DF1D1432D22DCD8001626E7 /* PerformOnce.swift in Sources */,
 				0DF1D1452D22DD06001626E7 /* BitcoinRateService.swift in Sources */,
+				793B22992D3BE34F00720058 /* AppCoordinator.swift in Sources */,
+				792341B92D3D477800EDF716 /* Attachable.swift in Sources */,
 				0DF1D1472D22DD4A001626E7 /* AnalyticsService.swift in Sources */,
+				792341BC2D3D7C5E00EDF716 /* BaseViewController.swift in Sources */,
 				1CA3B6562D22B0F500176711 /* AppDelegate.swift in Sources */,
 				1CA3B6582D22B0F500176711 /* SceneDelegate.swift in Sources */,
 				1CA3B6602D22B0F500176711 /* TransactionsTestTask.xcdatamodeld in Sources */,
 				0DF1D1402D22DC51001626E7 /* ServicesAssembler.swift in Sources */,
+				79ACBF5B2D3D2B7A00EB9968 /* Eventable.swift in Sources */,
+				792341B72D3D471700EDF716 /* AppCoordinatorViewModel.swift in Sources */,
+				793B229C2D3BE63300720058 /* MainViewController.swift in Sources */,
+				793B229E2D3BE63E00720058 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
