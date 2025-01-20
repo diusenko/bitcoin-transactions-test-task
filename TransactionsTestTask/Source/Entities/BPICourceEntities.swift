@@ -1,0 +1,41 @@
+//
+//  Untitled.swift
+//  TransactionsTestTask
+//
+//  Created by Dmytro Usenko on 20.01.2025.
+//
+
+import Foundation
+
+// MARK: - Root structure
+struct Bitcoin: Codable {
+    let time: Time
+    let chartName: String
+    let bpi: BPI
+}
+
+// MARK: - Time structure
+struct Time: Codable {
+    let updated: String
+    let updatedISO: String
+    let updateduk: String
+}
+
+// MARK: - BPI structure
+struct BPI: Codable {
+    let USD: Currency
+}
+
+// MARK: - Currency structure
+struct Currency: Codable {
+    let code: String
+    let symbol: String
+    let rate: String
+    let description: String
+    let rateFloat: Double
+
+    enum CodingKeys: String, CodingKey {
+        case code, symbol, rate, description
+        case rateFloat = "rate_float"
+    }
+}
