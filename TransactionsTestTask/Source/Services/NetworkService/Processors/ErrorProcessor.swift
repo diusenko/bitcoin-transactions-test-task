@@ -1,5 +1,5 @@
 //
-//  Untitled.swift
+//  ErrorProcessor.swift
 //  TransactionsTestTask
 //
 //  Created by Dmytro Usenko on 20.01.2025.
@@ -43,16 +43,16 @@ enum NetworkErrors: LocalizedError {
     }
 }
 
-// MARK: - Error Handling Protocol
+// MARK: - Error Processor Protocol
 
-protocol ErrorConverter {
+protocol ErrorProcessor {
     
     func converted(error: Error) -> Error
 }
 
-// MARK: - Default Error Handler Implementation
+// MARK: - Error Processor Implementation
 
-final class ErrorConverterService: ErrorConverter {
+final class ErrorProcessorImpl: ErrorProcessor {
     
     func converted(error: Error) -> Error {
         var networkError: Error = error

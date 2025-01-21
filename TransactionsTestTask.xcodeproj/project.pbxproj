@@ -24,7 +24,7 @@
 		792341C12D3E56E900EDF716 /* bpi-currentprice.json in Resources */ = {isa = PBXBuildFile; fileRef = 792341C02D3E56E000EDF716 /* bpi-currentprice.json */; };
 		792341C32D3E594300EDF716 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792341C22D3E594200EDF716 /* NetworkService.swift */; };
 		792341C82D3E5AD000EDF716 /* BPICourceEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792341C72D3E5ACF00EDF716 /* BPICourceEntities.swift */; };
-		792341CC2D3E605E00EDF716 /* ErrorConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792341CB2D3E605D00EDF716 /* ErrorConverter.swift */; };
+		792341CC2D3E605E00EDF716 /* ErrorProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792341CB2D3E605D00EDF716 /* ErrorProcessor.swift */; };
 		792341CF2D3E626700EDF716 /* LocalizationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792341CE2D3E626500EDF716 /* LocalizationConstants.swift */; };
 		792341D52D3E8A4100EDF716 /* CurrentPriceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792341D42D3E8A4000EDF716 /* CurrentPriceService.swift */; };
 		792341DA2D3E914C00EDF716 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792341D92D3E914900EDF716 /* APIEndpoint.swift */; };
@@ -74,7 +74,7 @@
 		792341C02D3E56E000EDF716 /* bpi-currentprice.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "bpi-currentprice.json"; sourceTree = "<group>"; };
 		792341C22D3E594200EDF716 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		792341C72D3E5ACF00EDF716 /* BPICourceEntities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPICourceEntities.swift; sourceTree = "<group>"; };
-		792341CB2D3E605D00EDF716 /* ErrorConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorConverter.swift; sourceTree = "<group>"; };
+		792341CB2D3E605D00EDF716 /* ErrorProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorProcessor.swift; sourceTree = "<group>"; };
 		792341CE2D3E626500EDF716 /* LocalizationConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationConstants.swift; sourceTree = "<group>"; };
 		792341D42D3E8A4000EDF716 /* CurrentPriceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPriceService.swift; sourceTree = "<group>"; };
 		792341D92D3E914900EDF716 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
@@ -211,7 +211,6 @@
 			children = (
 				792341E02D3FC07000EDF716 /* Processors */,
 				792341C22D3E594200EDF716 /* NetworkService.swift */,
-				792341CA2D3E603F00EDF716 /* ErrorConverter */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -242,14 +241,6 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
-		792341CA2D3E603F00EDF716 /* ErrorConverter */ = {
-			isa = PBXGroup;
-			children = (
-				792341CB2D3E605D00EDF716 /* ErrorConverter.swift */,
-			);
-			path = ErrorConverter;
-			sourceTree = "<group>";
-		};
 		792341CD2D3E625300EDF716 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +260,7 @@
 		792341E02D3FC07000EDF716 /* Processors */ = {
 			isa = PBXGroup;
 			children = (
+				792341CB2D3E605D00EDF716 /* ErrorProcessor.swift */,
 				792341DE2D3FBC4000EDF716 /* ResponseProcessor.swift */,
 			);
 			path = Processors;
@@ -484,7 +476,7 @@
 				1CA3B6602D22B0F500176711 /* TransactionsTestTask.xcdatamodeld in Sources */,
 				792341DA2D3E914C00EDF716 /* APIEndpoint.swift in Sources */,
 				792341C82D3E5AD000EDF716 /* BPICourceEntities.swift in Sources */,
-				792341CC2D3E605E00EDF716 /* ErrorConverter.swift in Sources */,
+				792341CC2D3E605E00EDF716 /* ErrorProcessor.swift in Sources */,
 				0DF1D1402D22DC51001626E7 /* ServicesAssembler.swift in Sources */,
 				79ACBF5B2D3D2B7A00EB9968 /* Eventable.swift in Sources */,
 				792341DF2D3FBC4300EDF716 /* ResponseProcessor.swift in Sources */,

@@ -1,3 +1,10 @@
+//
+//  NetworkService.swift
+//  TransactionsTestTask
+//
+//  Created by Dmytro Usenko on 20.01.2025.
+//
+
 import Foundation
 import Combine
 
@@ -22,13 +29,13 @@ protocol NetworkService {
 
 final class NetworkServiceImpl: NetworkService {
     
-    private let errorConverter: ErrorConverter
+    private let errorProcessor: ErrorProcessor
     private let responseProcessor: ResponseProcessor
 
     // MARK: - Init
     
-    init(errorConverter: ErrorConverter, responseProcessor: ResponseProcessor) {
-        self.errorConverter = errorConverter
+    init(errorProcessor: ErrorProcessor, responseProcessor: ResponseProcessor) {
+        self.errorProcessor = errorProcessor
         self.responseProcessor = responseProcessor
     }
     
@@ -41,7 +48,7 @@ final class NetworkServiceImpl: NetworkService {
             request.httpMethod = method.rawValue
             publisher = self.createURLSessionPublisher(with: request)
         } else {
-            let error = self.errorConverter.converted(error: URLError(.badURL))
+            let error = self.errorProcessor.converted(error: URLError(.badURL))
             publisher = Fail(error: error).eraseToAnyPublisher()
         }
         return publisher
@@ -63,7 +70,7 @@ final class NetworkServiceImpl: NetworkService {
             }
             .decode(type: T.self, decoder: JSONDecoder())
             .mapError { [weak self] error -> Error in
-                self?.errorConverter.converted(error: error) ?? unexpectedError
+                self?.errorProcessor.converted(error: error) ?? unexpectedError
             }
             .eraseToAnyPublisher()
     }
