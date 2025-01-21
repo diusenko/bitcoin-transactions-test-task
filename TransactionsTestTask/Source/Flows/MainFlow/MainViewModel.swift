@@ -48,7 +48,6 @@ final class MainViewModelImpl: MainViewModel {
     func updateCurrentPriceModel() {
         self.currentPriceService.fetchCurrentPrice().sink { [weak self] completion in
             if case .failure(let error) = completion {
-                print(error)
                 self?.sendEventOnMain(.updateFailed)
             }
             self?.cancelSubscriprions()

@@ -19,13 +19,12 @@ final class MainViewController<ViewModel: MainViewModel>: BaseViewController<Vie
     // MARK: - ViewController Lifecycle
     
     override func viewDidLoad() {
-        self.view.backgroundColor = .cyan
         super.viewDidLoad()
+        self.getCurrentPrice()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.getCurrentPrice()
+    override func loadView() {
+        self.view = MainView()
     }
     
     // MARK: Internal Function
@@ -38,8 +37,7 @@ final class MainViewController<ViewModel: MainViewModel>: BaseViewController<Vie
     
     override func process(events: ViewModel.Events) {
         switch events {
-        case .currentPriceModelUpdated(let model):
-            print(model)
+        case .currentPriceModelUpdated(let model): break
         case .updateFailed:
             self.view.backgroundColor = .red
         }
