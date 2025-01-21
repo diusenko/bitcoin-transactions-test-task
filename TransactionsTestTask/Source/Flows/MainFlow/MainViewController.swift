@@ -8,15 +8,15 @@
 import UIKit
 import Combine
 
-// MARK: MainViewControllerImpl
+// MARK: - MainViewControllerImpl
 
 final class MainViewController<ViewModel: MainViewModel>: BaseViewController<ViewModel> {
     
-    // MARK: Private properties
+    // MARK: - Private Properties
     
     var cancellable: Set<AnyCancellable> = []
     
-    // MARK: ViewController Lifecycle
+    // MARK: - ViewController Lifecycle
     
     override func viewDidLoad() {
         self.view.backgroundColor = .cyan

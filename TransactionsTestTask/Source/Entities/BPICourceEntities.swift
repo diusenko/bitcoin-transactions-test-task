@@ -7,26 +7,30 @@
 
 import Foundation
 
-// MARK: - Root structure
+// MARK: - Current Price Model
+
 struct Bitcoin: Codable {
     let time: Time
     let chartName: String
     let bpi: BPI
 }
 
-// MARK: - Time structure
+// MARK: - Time Model
+
 struct Time: Codable {
     let updated: String
     let updatedISO: String
     let updateduk: String
 }
 
-// MARK: - BPI structure
+// MARK: - BPI Model
+
 struct BPI: Codable {
     let USD: Currency
 }
 
-// MARK: - Currency structure
+// MARK: - Currency Model
+
 struct Currency: Codable {
     let code: String
     let symbol: String

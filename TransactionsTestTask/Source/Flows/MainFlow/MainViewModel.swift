@@ -7,25 +7,25 @@
 
 import Combine
 
-// MARK: Types
+// MARK: - Types
 
 enum MainViewModelEvents { }
 
-// MARK: Protocol
+// MARK: - Protocol
 
 protocol MainViewModel: Eventable where Events == MainViewModelEvents { }
 
-// MARK: MainViewModel
+// MARK: - MainViewModel
 
 final class MainViewModelImpl: MainViewModel {
     
-    // MARK: Internal properties
+    // MARK: - Internal Properties
     
     var events: AnyPublisher<MainViewModelEvents, Never>? {
         return subject.eraseToAnyPublisher()
     }
     
-    // MARK: Private properties
+    // MARK: - Private Properties
     
     private var subject = PassthroughSubject<MainViewModelEvents, Never>()
 }

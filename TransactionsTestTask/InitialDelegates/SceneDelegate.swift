@@ -47,11 +47,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 }
 
-// MARK: SceneDelegate extention
-
 extension SceneDelegate {
     
-    // MARK: creating window
+    // MARK: - Creating Window
     
     private func createWindow(with scene: UIScene) {
         guard let windowScene = (scene as? UIWindowScene) else { return }

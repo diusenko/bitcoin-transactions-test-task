@@ -18,17 +18,17 @@ protocol CurrentPriceService {
 
 final class CurrentPriceServiceImpl: CurrentPriceService {
     
-    // MARK: Private properties
+    // MARK: - Private Properties
     
     private let networkService: NetworkService
     
-    // MARK: Init
+    // MARK: - Init
     
     init(networkService: NetworkService) {
         self.networkService = networkService
     }
     
-    // MARK: Internal functions
+    // MARK: - Internal Functions
     
     func fetchCurrentPrice() -> AnyPublisher<Bitcoin, Error> {
         let endPoint = APIEndpoint.currentPriceEndpoint()

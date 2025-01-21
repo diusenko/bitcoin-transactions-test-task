@@ -7,25 +7,25 @@
 
 import Combine
 
-// MARK: Types
+// MARK: - Types
 
 enum AppCoordinatorEvents { }
 
-// MARK: Protocol
+// MARK: - Protocol
 
 protocol AppCoordinatorViewModel: Eventable where Events == AppCoordinatorEvents { }
 
-// MARK: MainViewModel
+// MARK: - MainViewModel
 
 final class AppCoordinatorViewModelImpl: AppCoordinatorViewModel {
     
-    // MARK: Internal properties
+    // MARK: - Internal Properties
     
     var events: AnyPublisher<AppCoordinatorEvents, Never>? {
         return subject.eraseToAnyPublisher()
     }
     
-    // MARK: Private properties
+    // MARK: - Private Properties
     
     private var subject = PassthroughSubject<AppCoordinatorEvents, Never>()
 }

@@ -10,18 +10,18 @@ import Combine
 
 class BaseViewController<ViewModel: Eventable>: UIViewController, Attachable {
     
-    // MARK: Deinit
+    // MARK: - Deinit
     
     /// Canceling subscription.
     deinit {
         self.cancelSubsribtions()
     }
     
-    // MARK: Internal properties
+    // MARK: - Internal Properties
     
     private var cancellable: Set<AnyCancellable> = []
     
-    // MARK: Internal functions
+    // MARK: - Internal Functions
     
     final func attach(with viewModel: ViewModel) {
         self.attachNewSubscriptions()
@@ -30,7 +30,7 @@ class BaseViewController<ViewModel: Eventable>: UIViewController, Attachable {
         }.store(in: &self.cancellable)
     }
     
-    // MARK: Open functions
+    // MARK: - Open Functions
     
     /// Override this method for processing events that was produced by ViewModel
     open func process(events: ViewModel.Events) { }
@@ -39,7 +39,7 @@ class BaseViewController<ViewModel: Eventable>: UIViewController, Attachable {
         self.cancelSubsribtions()
     }
     
-    // MARK: Private functions
+    // MARK: - Private Functions
     
     private func cancelSubsribtions() {
         self.cancellable.forEach {

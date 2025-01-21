@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-// MARK: Protocol
+// MARK: - Protocol
 
 protocol Coordinator: UINavigationController, Attachable {
     func attach(with viewModel: ViewModel)
@@ -16,18 +16,18 @@ protocol Coordinator: UINavigationController, Attachable {
 
 final class AppCoordinator<ViewModel: AppCoordinatorViewModel>: UINavigationController, Coordinator {
     
-    // MARK: Private properties
+    // MARK: - Private Properties
     
     private var viewModel: ViewModel?
     private var cancellable: AnyCancellable?
     
-    // MARK: Deinit
+    // MARK: - Deinit
     
     deinit {
         self.cancelSubsribtion()
     }
     
-    // MARK: Internal functions
+    // MARK: - Internal Functions
     
     func start() { }
     
@@ -37,7 +37,7 @@ final class AppCoordinator<ViewModel: AppCoordinatorViewModel>: UINavigationCont
         self.cancellable = cancellable
     }
     
-    // MARK: Private functions
+    // MARK: - Private Functions
     
     private func cancelSubsribtion() {
         self.cancellable?.cancel()
