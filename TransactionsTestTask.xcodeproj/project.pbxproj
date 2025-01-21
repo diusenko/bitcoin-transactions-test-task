@@ -270,8 +270,8 @@
 		792341E52D3FDA5300EDF716 /* ErrorProcessor */ = {
 			isa = PBXGroup;
 			children = (
-				792341CB2D3E605D00EDF716 /* ErrorProcessor.swift */,
 				792341E22D3FCE2B00EDF716 /* NetworkErrors.swift */,
+				792341CB2D3E605D00EDF716 /* ErrorProcessor.swift */,
 			);
 			path = ErrorProcessor;
 			sourceTree = "<group>";
