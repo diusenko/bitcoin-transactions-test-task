@@ -1,10 +1,8 @@
 import Foundation
 import Combine
 
-// TODO: - Change NetworkErrors enum to ErrorConverter
-/// Needs to create some entity for injection and substitution Response
-
 // MARK: - HTTP Methods
+
 enum HTTPMethod: String {
     case get = "GET"
     case post = "POST"
@@ -14,25 +12,27 @@ enum HTTPMethod: String {
 }
 
 // MARK: - Network Service Protocol
+
 protocol NetworkService {
     
     func request<T: Decodable>(_ endpoint: APIEndpoint, method: HTTPMethod) -> AnyPublisher<T, Error>
 }
 
-// MARK: - Default Network Service Implementation
+// MARK: - Network Service Implementation
+
 final class NetworkServiceImpl: NetworkService {
     
     private let errorConverter: ErrorConverter
     private let responseProcessor: ResponseProcessor
 
-    // MARK: Init
+    // MARK: - Init
     
     init(errorConverter: ErrorConverter, responseProcessor: ResponseProcessor) {
         self.errorConverter = errorConverter
         self.responseProcessor = responseProcessor
     }
     
-    // MARK: Inernal functions
+    // MARK: - Public Functions
     
     func request<T: Decodable>(_ endpoint: APIEndpoint, method: HTTPMethod) -> AnyPublisher<T, Error> {
         let publisher: AnyPublisher<T, Error>
@@ -44,11 +44,10 @@ final class NetworkServiceImpl: NetworkService {
             let error = self.errorConverter.converted(error: URLError(.badURL))
             publisher = Fail(error: error).eraseToAnyPublisher()
         }
-        
         return publisher
     }
     
-    // MARK: Private functions
+    // MARK: - Private Functions
     
     private func createURLSessionPublisher<T: Decodable>(with request: URLRequest) -> AnyPublisher<T, Error> {
         let errorMessage = LocalizationConstants.NetworkErrors.unexpectedError

@@ -7,12 +7,14 @@
 import Foundation
 
 // MARK: - Response Processor Protocol
+
 protocol ResponseProcessor {
     
     func process(response: URLResponse, data: Data) throws -> Data
 }
 
-// MARK: - Default Response Processor
+// MARK: - Response Processor Implementation
+
 final class ResponseProcessorImpl: ResponseProcessor {
     
     func process(response: URLResponse, data: Data) throws -> Data {

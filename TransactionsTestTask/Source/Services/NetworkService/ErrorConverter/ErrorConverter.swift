@@ -44,11 +44,14 @@ enum NetworkErrors: LocalizedError {
 }
 
 // MARK: - Error Handling Protocol
+
 protocol ErrorConverter {
+    
     func converted(error: Error) -> Error
 }
 
 // MARK: - Default Error Handler Implementation
+
 final class ErrorConverterService: ErrorConverter {
     
     func converted(error: Error) -> Error {
