@@ -30,7 +30,8 @@ final class ResponseProcessorImpl: ResponseProcessor {
         case 500...599:
             throw NetworkErrors.serverError(statusCode: statusCode)
         default:
-            throw NetworkErrors.unexpected(error: "HTTP Status Code: \(statusCode)")
+            let errorMessage = LocalizationConstants.NetworkErrors.unexpectedError
+            throw NetworkErrors.unexpected(error: errorMessage + ": \(statusCode)")
         }
     }
 }

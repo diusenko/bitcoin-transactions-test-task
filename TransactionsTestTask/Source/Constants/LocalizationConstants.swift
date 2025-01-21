@@ -15,5 +15,6 @@ enum LocalizationConstants {
         static let responseUnsuccessful = "Response Unsuccessful"
         static let unexpectedError = "Unexpected network error"
         static let notConnectedToInternet = "Internet connection problem"
+        static let statusCode = "HTTP Status Code"
     }
 }
