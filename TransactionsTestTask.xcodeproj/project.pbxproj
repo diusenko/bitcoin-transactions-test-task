@@ -125,11 +125,11 @@
 			isa = PBXGroup;
 			children = (
 				0DF1D1412D22DCC3001626E7 /* Helpers */,
+				0D15405F2D22EF3400D6D63F /* AnalyticsService */,
 				792341D32D3E8A2A00EDF716 /* EndpointServices */,
 				792341BD2D3E563C00EDF716 /* NetworkService */,
 				0DF1D13F2D22DC4B001626E7 /* ServicesAssembler.swift */,
 				0DF1D1442D22DCFF001626E7 /* BitcoinRateService.swift */,
-				0D15405F2D22EF3400D6D63F /* AnalyticsService */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -211,7 +211,7 @@
 		792341BD2D3E563C00EDF716 /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
-				792341E02D3FC07000EDF716 /* Processors */,
+				792341D92D3E914900EDF716 /* APIEndpoint.swift */,
 				792341C22D3E594200EDF716 /* NetworkService.swift */,
 			);
 			path = NetworkService;
@@ -238,8 +238,6 @@
 			isa = PBXGroup;
 			children = (
 				792341C72D3E5ACF00EDF716 /* BPICourceEntities.swift */,
-				792341E22D3FCE2B00EDF716 /* NetworkErrors.swift */,
-				792341D92D3E914900EDF716 /* APIEndpoint.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -263,10 +261,19 @@
 		792341E02D3FC07000EDF716 /* Processors */ = {
 			isa = PBXGroup;
 			children = (
-				792341CB2D3E605D00EDF716 /* ErrorProcessor.swift */,
+				792341E52D3FDA5300EDF716 /* ErrorProcessor */,
 				792341DE2D3FBC4000EDF716 /* ResponseProcessor.swift */,
 			);
 			path = Processors;
+			sourceTree = "<group>";
+		};
+		792341E52D3FDA5300EDF716 /* ErrorProcessor */ = {
+			isa = PBXGroup;
+			children = (
+				792341CB2D3E605D00EDF716 /* ErrorProcessor.swift */,
+				792341E22D3FCE2B00EDF716 /* NetworkErrors.swift */,
+			);
+			path = ErrorProcessor;
 			sourceTree = "<group>";
 		};
 		793B22912D3BDF7300720058 /* Assets */ = {
@@ -300,6 +307,7 @@
 				792341CD2D3E625300EDF716 /* Constants */,
 				792341C92D3E5AD500EDF716 /* Entities */,
 				79ACBF552D3D2B3800EB9968 /* Protocols */,
+				792341E02D3FC07000EDF716 /* Processors */,
 				0DF1D13E2D22DC2D001626E7 /* Services */,
 				793B22962D3BE32700720058 /* Coordinators */,
 				793B229A2D3BE61300720058 /* Flows */,
