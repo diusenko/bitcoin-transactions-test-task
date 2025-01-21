@@ -23,11 +23,13 @@ protocol NetworkService {
 final class NetworkServiceImpl: NetworkService {
     
     private let errorConverter: ErrorConverter
+    private let responseProcessor: ResponseProcessor
 
     // MARK: Init
     
-    init(errorConverter: ErrorConverter) {
+    init(errorConverter: ErrorConverter, responseProcessor: ResponseProcessor) {
         self.errorConverter = errorConverter
+        self.responseProcessor = responseProcessor
     }
     
     // MARK: Inernal functions
@@ -49,41 +51,21 @@ final class NetworkServiceImpl: NetworkService {
     // MARK: Private functions
     
     private func createURLSessionPublisher<T: Decodable>(with request: URLRequest) -> AnyPublisher<T, Error> {
-        URLSession.shared
+        let errorMessage = LocalizationConstants.NetworkErrors.unexpectedError
+        let unexpectedError = NetworkErrors.unexpected(error: errorMessage)
+        return URLSession.shared
             .dataTaskPublisher(for: request)
             .tryMap { [weak self] data, response in
                 guard let self = self else {
-                    throw NetworkErrors.unexpected(error: "Self was deallocated")
+                    throw unexpectedError
                 }
-                // Ensure the response is processed successfully
-                return try self.process(response: response, with: data)
+                return try self.responseProcessor.process(response: response,
+                                                          data: data)
             }
             .decode(type: T.self, decoder: JSONDecoder())
             .mapError { [weak self] error -> Error in
-                guard let self = self else {
-                    return NetworkErrors.unexpected(error: "Self was deallocated")
-                }
-                return self.errorConverter.converted(error: error)
+                self?.errorConverter.converted(error: error) ?? unexpectedError
             }
             .eraseToAnyPublisher()
-    }
-    
-    // TODO: - Create ResponceProcessor
-    /// For my opinion needs to create some entity for injection and substitution Response
-    private func process(response: URLResponse, with data: Data) throws -> Data {
-        guard let httpResponse = response as? HTTPURLResponse else {
-            throw NetworkErrors.responseUnsuccessful
-        }
-        let statusCode = httpResponse.statusCode
-        switch statusCode {
-        case 200...299:
-            return data
-        case 400...499:
-            throw NetworkErrors.requestFailed(statusCode: statusCode)
-        case 500...599:
-            throw NetworkErrors.serverError(statusCode: statusCode)
-        default:
-            throw NetworkErrors.unexpected(error: "HTTP Status Code: \(statusCode)")
-        }
     }
 }
