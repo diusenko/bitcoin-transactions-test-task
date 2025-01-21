@@ -62,7 +62,12 @@ extension SceneDelegate {
     }
     
     private func initializedViewController() -> UIViewController {
-        let viewModel = MainViewModelImpl()
+        let errorProcessor = ErrorProcessorImpl()
+        let responseProcessor = ResponseProcessorImpl()
+        let networkService = NetworkServiceImpl(errorProcessor: errorProcessor,
+                                                responseProcessor: responseProcessor)
+        let currentPriceService = CurrentPriceServiceImpl(networkService: networkService)
+        let viewModel = MainViewModelImpl(with: currentPriceService)
         let viewController = MainViewController<MainViewModelImpl>()
         viewController.attach(with: viewModel)
         

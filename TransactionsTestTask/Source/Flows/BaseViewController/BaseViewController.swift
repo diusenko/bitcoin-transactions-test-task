@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-class BaseViewController<ViewModel: Eventable>: UIViewController, Attachable {
+class BaseViewController<ViewModel: Eventable>: UIViewController, ViewController {
     
     // MARK: - Deinit
     
@@ -17,13 +17,15 @@ class BaseViewController<ViewModel: Eventable>: UIViewController, Attachable {
         self.cancelSubsribtions()
     }
     
-    // MARK: - Internal Properties
+    // MARK: - Private Properties
     
     private var cancellable: Set<AnyCancellable> = []
+    private(set) var viewModel: ViewModel?
     
     // MARK: - Internal Functions
     
     final func attach(with viewModel: ViewModel) {
+        self.viewModel = viewModel
         self.attachNewSubscriptions()
         viewModel.events?.sink { [weak self] events in
             self?.process(events: events)
@@ -34,6 +36,7 @@ class BaseViewController<ViewModel: Eventable>: UIViewController, Attachable {
     
     /// Override this method for processing events that was produced by ViewModel
     open func process(events: ViewModel.Events) { }
+    
     ///Need to call super.attachNewSubscriptions() before implementing logic
     open func attachNewSubscriptions() {
         self.cancelSubsribtions()

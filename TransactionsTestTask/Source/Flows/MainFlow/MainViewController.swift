@@ -22,4 +22,26 @@ final class MainViewController<ViewModel: MainViewModel>: BaseViewController<Vie
         self.view.backgroundColor = .cyan
         super.viewDidLoad()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.getCurrentPrice()
+    }
+    
+    // MARK: Internal Function
+    
+    func getCurrentPrice() {
+        self.viewModel?.updateCurrentPriceModel()
+    }
+    
+    // MARK: BaseViewController
+    
+    override func process(events: ViewModel.Events) {
+        switch events {
+        case .currentPriceModelUpdated(let model):
+            print(model)
+        case .updateFailed:
+            self.view.backgroundColor = .red
+        }
+    }
 }
