@@ -30,7 +30,7 @@ struct APIEndpoint {
 
     var url: URL? {
         var components = URLComponents()
-        components.scheme = self.host.rawValue
+        components.scheme = self.scheme.rawValue
         components.host = self.host.rawValue
         components.path = self.endPoint.rawValue
         components.queryItems = self.queryItems
