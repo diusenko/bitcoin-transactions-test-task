@@ -38,10 +38,11 @@ final class MainViewModelImpl: MainViewModel {
     
     // MARK: - Private Properties
     
+    private let bpiRateFetcherService: BPIRateFetcherService
+    private let transactionService: TransactionsService
+    private let accountBalanceService: AccountBalanceService
+    
     private var subject = PassthroughSubject<MainViewModelEvents, Never>()
-    private var bpiRateFetcherService: BPIRateFetcherService
-    private var transactionService: TransactionsService
-    private var accountBalanceService: AccountBalanceService
     private var cancelable: Set<AnyCancellable> = []
     
     private var transactions: [TransactionDetail] = []
