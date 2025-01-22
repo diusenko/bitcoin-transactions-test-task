@@ -4,6 +4,9 @@
 //
 //
 
+import Foundation
+import Combine
+
 /// Rate Service should fetch data from https://api.coindesk.com/v1/bpi/currentprice.json
 /// Fetching should be scheduled with dynamic update interval
 /// Rate should be cached for the offline mode
@@ -11,20 +14,91 @@
 /// The service should be covered by unit tests
 protocol BitcoinRateService: AnyObject {
     
-    var onRateUpdate: ((Double) -> Void)? { get set }
+    var onRateUpdate: ((BPIRate) -> Void)? { get set }
+    var saveCurentRate: (() -> ())? { get set }
 }
 
-final class BitcoinRateServiceImpl {
+final class BitcoinRateServiceImpl: BitcoinRateService {
+
+    var saveCurentRate: (() -> ())?
+    var onRateUpdate: ((BPIRate) -> Void)?
     
-    var onRateUpdate: ((Double) -> Void)?
+    private let bpiRateFetcherService: BPIRateFetcherService
+    private let timer: Timer
+    private let customSerialQueue: DispatchQueue
+    
+    private var cancelableBpiRate: Set<AnyCancellable> = []
+    private var currentBPIRate: BPIRate?
+    
+    // MARK: - Deinit
+    
+    deinit {
+        self.stopUpdating()
+    }
     
     // MARK: - Init
     
-    init() {
-        
+    init(rate: BPIRate?,
+         bpiRateFetcherService: BPIRateFetcherService,
+         timer: Timer,
+         queue: DispatchQueue = DispatchQueue.customSerialQueue(with: BitcoinRateServiceImpl.Type.self)
+    ) {
+        self.currentBPIRate = rate
+        self.bpiRateFetcherService = bpiRateFetcherService
+        self.timer = timer
+        self.customSerialQueue = queue
+    }
+    
+    // MARK: Final functions
+    
+    func startUpdating() {
+        if !self.timer.isRunning {
+            self.timer.startTimer(interval: 2,
+                                  queue: self.customSerialQueue
+            ) { [weak self] in
+                self?.fetchBPIRate()
+            }
+        }
     }
 }
 
-extension BitcoinRateServiceImpl: BitcoinRateService {
+/// Have two approach every update save bpi rate to DB
+/// or
+/// Save only when we can't get it from server. I prefer second one.
+/// This approach has a problem.
+/// In some cases we will have old rate.
+/// But on another side first approch is also not a garatrie that data will be saved in DB.
+extension BitcoinRateServiceImpl {
     
+    // TODO: - Needs to check Reachability, or some button for trigerring startUpdating after receiving server error
+    private func fetchBPIRate() {
+        self.bpiRateFetcherService
+            .fetchBPIRate()
+            .sink
+        { [weak self] completion in
+            if case .failure(_ ) = completion {
+                self?.stopUpdating()
+                self?.saveCurentRate?()
+            }
+        } receiveValue: { [weak self] model in
+            self?.update(rate: model)
+        }.store(in: &self.cancelableBpiRate)
+    }
+    
+    private func update(rate: BPIRate) {
+        if self.currentBPIRate == nil {
+            self.saveCurentRate?()
+        }
+        self.currentBPIRate = rate
+        self.onRateUpdate?(rate)
+    }
+    
+    private func stopUpdating() {
+        self.cancelBpiRateSubscriptions()
+        self.timer.stopTimer()
+    }
+    
+    private func cancelBpiRateSubscriptions() {
+        self.cancelableBpiRate.forEach { $0.cancel() }
+    }
 }
