@@ -17,4 +17,8 @@ enum LocalizationConstants {
         static let notConnectedToInternet = "Internet connection problem"
         static let statusCode = "HTTP Status Code"
     }
+    
+    enum MainViewConstants {
+        static let addTransaction = "Add Transaction"
+    }
 }

@@ -11,21 +11,35 @@ import Combine
 fileprivate struct MainViewConstants {
     static let spacing: CGFloat = 20
     static let fontSize: CGFloat = 16
+    static let balanceFontSize: CGFloat = 20
     static let leading: CGFloat = 20
     static let trailing: CGFloat = -20
     static let cornerradius: CGFloat = 12
+    static let buttonInset: CGFloat = 8
 }
 
-protocol MainView: BaseUIViewImpl { }
+protocol MainView: BaseView {
+    func setBpiLabel(text: String)
+    func setBalanceLabel(text: String)
+}
 
 final class MainViewImpl: BaseUIViewImpl, MainView {
     
     // MARK: - Lazy computed UI Elements
     
-    private lazy var balanceLabel: UILabel = {
+    private lazy var bpiLabel: UILabel = {
         let fontSize = MainViewConstants.fontSize
         let label = UILabel()
-        label.text = "Hello, World!"
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: fontSize)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        return label
+    }()
+    
+    private lazy var balanceLabel: UILabel = {
+        let fontSize = MainViewConstants.balanceFontSize
+        let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: fontSize)
         
@@ -34,22 +48,33 @@ final class MainViewImpl: BaseUIViewImpl, MainView {
 
     private lazy var addBalanceButton: UIButton = {
         let fontSize = MainViewConstants.fontSize
-        let button = UIButton(type: .system)
-        button.setImage(.add.withTintColor(.green), for: .normal)
-        button.layer.cornerRadius = MainViewConstants.cornerradius
+        var configuration = UIButton.Configuration.filled()
+        configuration.image = .add
+        configuration.baseBackgroundColor = .systemGreen
+        configuration.cornerStyle = .large
+        let button = UIButton(configuration: configuration)
         button.titleLabel?.font = UIFont.systemFont(ofSize: fontSize)
         
         return button
     }()
 
     private lazy var addTransactionButton: UIButton = {
+        let addTransactionTitle = LocalizationConstants
+            .MainViewConstants
+            .addTransaction
+        let inset = MainViewConstants.buttonInset
         let fontSize = MainViewConstants.fontSize
-        let button = UIButton(type: .system)
-        button.backgroundColor = .green
-        button.layer.cornerRadius = MainViewConstants.cornerradius
-        button.setTitle("Tap Me", for: .normal)
+        var configuration = UIButton.Configuration.filled()
+        configuration.title = addTransactionTitle
+        configuration.baseBackgroundColor = .systemGreen
+        configuration.baseForegroundColor = .systemGray6
+        configuration.cornerStyle = .medium
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: inset,
+                                                              leading: inset,
+                                                              bottom: inset,
+                                                              trailing: inset)
+        let button = UIButton(configuration: configuration)
         button.titleLabel?.font = UIFont.systemFont(ofSize: fontSize)
-        
         return button
     }()
 
@@ -90,7 +115,16 @@ final class MainViewImpl: BaseUIViewImpl, MainView {
         self.backgroundColor = .white
         self.addSubview(self.verticalStackView)
         self.addSubview(self.tableView)
+        self.addSubview(self.bpiLabel)
         self.setupConstraints()
+    }
+    
+    func setBpiLabel(text: String) {
+        self.bpiLabel.text = text
+    }
+    
+    func setBalanceLabel(text: String) {
+        self.balanceLabel.text = text
     }
     
     // MARK: - Private Functions
@@ -98,6 +132,19 @@ final class MainViewImpl: BaseUIViewImpl, MainView {
     private func setupConstraints() {
         NSLayoutConstraint.activate(self.stackViewConstraints())
         NSLayoutConstraint.activate(self.tableViewConstraints())
+        NSLayoutConstraint.activate(self.bpiLabelConstraint())
+    }
+    
+    private func bpiLabelConstraint() -> [NSLayoutConstraint] {
+        return [
+            self.bpiLabel
+                .topAnchor
+                .constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            self.bpiLabel
+                .trailingAnchor
+                .constraint(equalTo: trailingAnchor,
+                            constant: MainViewConstants.trailing)
+        ]
     }
     
     private func stackViewConstraints() -> [NSLayoutConstraint] {
