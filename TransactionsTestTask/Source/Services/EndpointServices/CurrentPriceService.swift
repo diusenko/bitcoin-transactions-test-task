@@ -1,5 +1,5 @@
 //
-//  Untitled.swift
+//  CurrentPriceService.swift
 //  TransactionsTestTask
 //
 //  Created by Dmytro Usenko on 20.01.2025.
