@@ -13,6 +13,7 @@ import Combine
 enum MainViewModelEvents {
     case currentPriceModelUpdated(Bitcoin)
     case transactionsUpdated([TransactionDetail])
+    case balanceUpdated(AccountBalance)
     case updateFailed
 }
 
@@ -21,6 +22,7 @@ enum MainViewModelEvents {
 protocol MainViewModel: ViewModel where Events == MainViewModelEvents {
     func updateCurrentPriceModel()
     func fetchTransactions()
+    func fetchBalance()
 }
 
 // MARK: - MainViewModel
@@ -38,15 +40,26 @@ final class MainViewModelImpl: MainViewModel {
     private var subject = PassthroughSubject<MainViewModelEvents, Never>()
     private var currentPriceService: CurrentPriceService
     private var transactionService: TransactionsService
+    private var accountBalanceService: AccountBalanceService
     private var cancelable: Set<AnyCancellable> = []
+    
+    // MARK: - Deinit
+    
+    deinit {
+        self.cancelable.forEach {
+            $0.cancel()
+        }
+    }
     
     // MARK: - Init
     
     init(with currentPriceService: CurrentPriceService,
-         and transactionService: TransactionsService
+         and transactionService: TransactionsService,
+         and accountBalanceService: AccountBalanceService
     ) {
         self.currentPriceService = currentPriceService
         self.transactionService = transactionService
+        self.accountBalanceService = accountBalanceService
     }
     
     // MARK: - Final Functions
@@ -63,7 +76,15 @@ final class MainViewModelImpl: MainViewModel {
     }
     
     func fetchTransactions() {
-        transactionService.fetchTransactions().sink { error in
+        self.transactionService.fetchTransactions().sink { error in
+            print(error)
+        } receiveValue: { model in
+            print(model)
+        }.store(in: &cancelable)
+    }
+    
+    func fetchBalance() {
+        self.accountBalanceService.fetchBalance().sink { error in
             print(error)
         } receiveValue: { model in
             print(model)

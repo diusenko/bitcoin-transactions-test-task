@@ -22,15 +22,9 @@ final class MainViewController<ViewModel: MainViewModel,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getCurrentPrice()
-    }
-        
-    // MARK: Internal Function
-    
-    func getCurrentPrice() {
-        self.uiView?.showIndicator()
         self.viewModel?.updateCurrentPriceModel()
         self.viewModel?.fetchTransactions()
+        self.viewModel?.fetchBalance()
     }
     
     // MARK: BaseViewController
@@ -40,6 +34,7 @@ final class MainViewController<ViewModel: MainViewModel,
         switch events {
         case .currentPriceModelUpdated(let currentPrice): break
         case .transactionsUpdated(let transactions): break
+        case .
         case .updateFailed:
             self.view.backgroundColor = .red
         }

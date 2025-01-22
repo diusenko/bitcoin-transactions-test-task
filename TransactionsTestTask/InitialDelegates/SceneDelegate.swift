@@ -70,7 +70,10 @@ extension SceneDelegate {
                                                 responseProcessor: responseProcessor)
         let currentPriceService = CurrentPriceServiceImpl(networkService: networkService)
         let transactionService = TransactionsServiceImpl(networkService: networkService)
-        let viewModel = MainViewModelImpl(with: currentPriceService, and: transactionService)
+        let accountBalanceService = AccountBalanceServiceImpl(networkService: networkService)
+        let viewModel = MainViewModelImpl(with: currentPriceService,
+                                          and: transactionService,
+                                          and: accountBalanceService)
         let view = MainViewImpl()
         let viewController = MainViewController<MainViewModelImpl, MainViewImpl>()
         viewController.attach(view: view)
