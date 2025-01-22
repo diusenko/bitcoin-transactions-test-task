@@ -18,10 +18,11 @@ timeline.xctimeline
 playground.xcworkspace
 
 *.xcodeproj
-.build/
+build/
 
 
 # Add this line if you want to avoid checking in source code from the Xcode workspace
 # *.xcworkspace
+
 
 
