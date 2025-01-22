@@ -24,7 +24,7 @@ struct APIEndpoint {
     enum Endpoints: String {
         case currentPrice = "/v1/bpi/currentprice.json"
         case transactionFile = "transactions"
-        case accountBalanceFile = "account-balance"
+        case accountBalanceFile = "accountbalance"
     }
     
     let scheme: Schemes
