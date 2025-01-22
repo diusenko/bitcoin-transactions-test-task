@@ -33,6 +33,7 @@
 		792341E92D3FF64500EDF716 /* BaseProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792341E82D3FF63B00EDF716 /* BaseProtocols.swift */; };
 		792341EB2D40201400EDF716 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792341EA2D40201300EDF716 /* MainView.swift */; };
 		792341ED2D40F55F00EDF716 /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792341EC2D40F55300EDF716 /* BaseUIView.swift */; };
+		792341F42D410E9300EDF716 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792341F32D410E9200EDF716 /* CustomTableViewCell.swift */; };
 		793B22992D3BE34F00720058 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B22982D3BE34D00720058 /* AppCoordinator.swift */; };
 		793B229C2D3BE63300720058 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B229B2D3BE62B00720058 /* MainViewController.swift */; };
 		793B229E2D3BE63E00720058 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B229D2D3BE63800720058 /* MainViewModel.swift */; };
@@ -87,6 +88,7 @@
 		792341E82D3FF63B00EDF716 /* BaseProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProtocols.swift; sourceTree = "<group>"; };
 		792341EA2D40201300EDF716 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		792341EC2D40F55300EDF716 /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
+		792341F32D410E9200EDF716 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		793B22982D3BE34D00720058 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		793B229B2D3BE62B00720058 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		793B229D2D3BE63800720058 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 		792341B42D3D41A300EDF716 /* MainFlow */ = {
 			isa = PBXGroup;
 			children = (
+				792341F22D410E8400EDF716 /* Cell */,
 				792341EA2D40201300EDF716 /* MainView.swift */,
 				793B229D2D3BE63800720058 /* MainViewModel.swift */,
 				793B229B2D3BE62B00720058 /* MainViewController.swift */,
@@ -282,6 +285,14 @@
 				792341CB2D3E605D00EDF716 /* ErrorProcessor.swift */,
 			);
 			path = ErrorProcessor;
+			sourceTree = "<group>";
+		};
+		792341F22D410E8400EDF716 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				792341F32D410E9200EDF716 /* CustomTableViewCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		793B22912D3BDF7300720058 /* Assets */ = {
@@ -484,6 +495,7 @@
 				0D1540612D22EF5D00D6D63F /* AnalyticsEvent.swift in Sources */,
 				0DF1D1432D22DCD8001626E7 /* PerformOnce.swift in Sources */,
 				792341C32D3E594300EDF716 /* NetworkService.swift in Sources */,
+				792341F42D410E9300EDF716 /* CustomTableViewCell.swift in Sources */,
 				0DF1D1452D22DD06001626E7 /* BitcoinRateService.swift in Sources */,
 				793B22992D3BE34F00720058 /* AppCoordinator.swift in Sources */,
 				792341ED2D40F55F00EDF716 /* BaseUIView.swift in Sources */,

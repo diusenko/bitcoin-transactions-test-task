@@ -78,20 +78,30 @@ final class MainViewImpl: BaseUIViewImpl, MainView {
         return stackView
     }()
 
-    private let constants = MainViewConstants()
-    
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        return tableView
+    }()
+
     // MARK: - Init
     
     override func addSubviews() {
         self.backgroundColor = .white
         self.addSubview(self.verticalStackView)
+        self.addSubview(self.tableView)
         self.setupConstraints()
     }
     
     // MARK: - Private Functions
     
     private func setupConstraints() {
-        NSLayoutConstraint.activate([
+        NSLayoutConstraint.activate(self.stackViewConstraints())
+        NSLayoutConstraint.activate(self.tableViewConstraints())
+    }
+    
+    private func stackViewConstraints() -> [NSLayoutConstraint] {
+       return [
             self.verticalStackView.centerXAnchor
                 .constraint(equalTo: centerXAnchor),
             self.verticalStackView.centerYAnchor
@@ -102,6 +112,16 @@ final class MainViewImpl: BaseUIViewImpl, MainView {
             self.verticalStackView.trailingAnchor
                 .constraint(lessThanOrEqualTo: trailingAnchor,
                             constant: MainViewConstants.trailing),
-        ])
+        ]
+    }
+    
+    private func tableViewConstraints() -> [NSLayoutConstraint] {
+       return [
+        self.tableView.topAnchor.constraint(equalTo: verticalStackView.bottomAnchor,
+                                            constant: MainViewConstants.spacing),
+        self.tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+        self.tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+        self.tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
+       ]
     }
 }
