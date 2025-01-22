@@ -25,5 +25,13 @@ enum TransactionType: String, Codable {
 
 struct TransactionDetail: Codable {
     let type: TransactionType
-    let category: String?
+    let category: TransactionCategories?
+}
+
+enum TransactionCategories: Codable {
+    case groceries
+    case taxi
+    case electronics
+    case restaurant
+    case other
 }
