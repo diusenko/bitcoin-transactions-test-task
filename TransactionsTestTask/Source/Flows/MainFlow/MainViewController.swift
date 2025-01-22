@@ -34,7 +34,7 @@ final class MainViewController<ViewModel: MainViewModel,
         switch events {
         case .currentPriceModelUpdated(let currentPrice): break
         case .transactionsUpdated(let transactions): break
-        case .
+        case .balanceUpdated(let balance): break
         case .updateFailed:
             self.view.backgroundColor = .red
         }
