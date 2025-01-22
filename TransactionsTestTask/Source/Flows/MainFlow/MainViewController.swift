@@ -10,7 +10,9 @@ import Combine
 
 // MARK: - MainViewControllerImpl
 
-final class MainViewController<ViewModel: MainViewModel>: BaseViewController<ViewModel> {
+final class MainViewController<ViewModel: MainViewModel,
+                               View: MainView>:
+                               BaseViewController<ViewModel, View> {
     
     // MARK: - Private Properties
     
@@ -22,22 +24,20 @@ final class MainViewController<ViewModel: MainViewModel>: BaseViewController<Vie
         super.viewDidLoad()
         self.getCurrentPrice()
     }
-    
-    override func loadView() {
-        self.view = MainView()
-    }
-    
+        
     // MARK: Internal Function
     
     func getCurrentPrice() {
+        self.uiView?.showIndicator()
         self.viewModel?.updateCurrentPriceModel()
     }
     
     // MARK: BaseViewController
     
     override func process(events: ViewModel.Events) {
+        super.process(events: events)
         switch events {
-        case .currentPriceModelUpdated(let model): break
+        case .currentPriceModelUpdated(_): break
         case .updateFailed:
             self.view.backgroundColor = .red
         }

@@ -9,7 +9,14 @@ import UIKit
 
 /// This protocol needed for ViewControllers which can attach ViewModels.
 /// Func "attach" is for attaching ViewModels..
-protocol Attachable where Self: UIViewController {
+protocol ViewModelAttachable where Self: UIViewController {
     associatedtype ViewModel: Eventable
     func attach(with viewModel: ViewModel)
 }
+
+protocol ViewAttachable where Self: UIViewController {
+    associatedtype View: IndicatorDisplayable
+    func attach(view: View)
+}
+
+protocol Attachable: ViewModelAttachable,ViewAttachable { }

@@ -16,8 +16,10 @@ fileprivate struct MainViewConstants {
     static let cornerradius: CGFloat = 12
 }
 
-final class MainView: UIView {
+protocol MainView: BaseUIViewImpl { }
 
+final class MainViewImpl: BaseUIViewImpl, MainView {
+    
     // MARK: - Lazy computed UI Elements
     
     private lazy var balanceLabel: UILabel = {
@@ -80,17 +82,10 @@ final class MainView: UIView {
     
     // MARK: - Init
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override func addSubviews() {
         self.backgroundColor = .white
         self.addSubview(self.verticalStackView)
         self.setupConstraints()
-    }
-
-    // MARK: - Required Init
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Private Functions

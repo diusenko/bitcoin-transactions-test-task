@@ -10,7 +10,7 @@ import Combine
 
 // MARK: - Protocol
 
-protocol Coordinator: UINavigationController, Attachable {
+protocol Coordinator: UINavigationController, ViewModelAttachable {
     func attach(with viewModel: ViewModel)
 }
 

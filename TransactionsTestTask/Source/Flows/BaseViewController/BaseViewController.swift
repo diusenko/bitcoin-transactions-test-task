@@ -8,7 +8,8 @@
 import UIKit
 import Combine
 
-class BaseViewController<ViewModel: Eventable>: UIViewController, ViewController {
+class BaseViewController<ViewModel: Eventable,
+                         View: BaseView>: UIViewController, ViewController {
     
     // MARK: - Deinit
     
@@ -19,25 +20,26 @@ class BaseViewController<ViewModel: Eventable>: UIViewController, ViewController
     
     // MARK: - Private Properties
     
-    private var cancellable: Set<AnyCancellable> = []
     private(set) var viewModel: ViewModel?
+    private(set) var uiView: BaseView?
+    private var cancellable: Set<AnyCancellable> = []
     
-    // MARK: - Internal Functions
+    // MARK: - ViewController Lifecycle
     
-    final func attach(with viewModel: ViewModel) {
-        self.viewModel = viewModel
-        self.attachNewSubscriptions()
-        viewModel.events?.sink { [weak self] events in
-            self?.process(events: events)
-        }.store(in: &self.cancellable)
+    override func loadView() {
+        self.view = self.uiView
     }
     
     // MARK: - Open Functions
     
     /// Override this method for processing events that was produced by ViewModel
-    open func process(events: ViewModel.Events) { }
+    /// When method will be overrided calling super.process is required
+    open func process(events: ViewModel.Events) {
+        self.uiView?.hideIndicator()
+    }
     
-    ///Need to call super.attachNewSubscriptions() before implementing logic
+    /// Need to call super.attachNewSubscriptions() before implementing logic
+    /// When method will be overrided calling super.process is required
     open func attachNewSubscriptions() {
         self.cancelSubsribtions()
     }
@@ -48,5 +50,24 @@ class BaseViewController<ViewModel: Eventable>: UIViewController, ViewController
         self.cancellable.forEach {
             $0.cancel()
         }
+    }
+}
+
+// MARK: Attachable
+
+extension BaseViewController {
+    
+    final func attach(with viewModel: ViewModel) {
+        self.viewModel = viewModel
+        self.attachNewSubscriptions()
+        viewModel.events?.sink { [weak self] events in
+            self?.process(events: events)
+        }.store(in: &self.cancellable)
+    }
+    
+    /// Call methods for updating ViewModel  events after only after loadView.
+    /// Because View can not be assigned to View Controller
+    final func attach(view: View) {
+        self.uiView = view
     }
 }
