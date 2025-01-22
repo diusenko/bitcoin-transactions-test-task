@@ -24,6 +24,7 @@ struct APIEndpoint {
     enum Endpoints: String {
         case currentPrice = "/v1/bpi/currentprice.json"
         case transactionFile = "transactions"
+        case accountBalanceFile = "account-balance"
     }
     
     let scheme: Schemes
@@ -34,7 +35,7 @@ struct APIEndpoint {
     var url: URL? {
         var components = URLComponents()
         var path = self.endPoint.rawValue
-        if self.endPoint == .transactionFile {
+        if self.scheme == .file {
             path = self.pathToFile(for: self.endPoint) ?? ""
         }
         components.scheme = self.scheme.rawValue
@@ -54,6 +55,12 @@ struct APIEndpoint {
         return APIEndpoint(scheme: .file,
                            host: .empty,
                            endPoint: .transactionFile)
+    }
+    
+    static func accountBalanceEndpoint() -> APIEndpoint {
+        return APIEndpoint(scheme: .file,
+                           host: .empty,
+                           endPoint: .accountBalanceFile)
     }
     
     private func pathToFile(for endpoint: Endpoints) -> String? {

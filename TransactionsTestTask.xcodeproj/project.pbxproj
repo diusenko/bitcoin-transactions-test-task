@@ -39,6 +39,9 @@
 		792341FF2D4122ED00EDF716 /* TransactionEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792341FE2D4122EA00EDF716 /* TransactionEntities.swift */; };
 		792342012D412DE400EDF716 /* TransactionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792342002D412DE300EDF716 /* TransactionsService.swift */; };
 		792342042D412E0C00EDF716 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792342032D412E0900EDF716 /* DateExtension.swift */; };
+		792342062D41480000EDF716 /* account-balance.json in Sources */ = {isa = PBXBuildFile; fileRef = 792342052D4147D700EDF716 /* account-balance.json */; };
+		792342092D41493C00EDF716 /* AccountBalanceEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792342082D41492D00EDF716 /* AccountBalanceEntity.swift */; };
+		7923420B2D41498900EDF716 /* AccountBalanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7923420A2D41498700EDF716 /* AccountBalanceService.swift */; };
 		793B22992D3BE34F00720058 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B22982D3BE34D00720058 /* AppCoordinator.swift */; };
 		793B229C2D3BE63300720058 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B229B2D3BE62B00720058 /* MainViewController.swift */; };
 		793B229E2D3BE63E00720058 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B229D2D3BE63800720058 /* MainViewModel.swift */; };
@@ -99,6 +102,9 @@
 		792341FE2D4122EA00EDF716 /* TransactionEntities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionEntities.swift; sourceTree = "<group>"; };
 		792342002D412DE300EDF716 /* TransactionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsService.swift; sourceTree = "<group>"; };
 		792342032D412E0900EDF716 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		792342052D4147D700EDF716 /* account-balance.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "account-balance.json"; sourceTree = "<group>"; };
+		792342082D41492D00EDF716 /* AccountBalanceEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalanceEntity.swift; sourceTree = "<group>"; };
+		7923420A2D41498700EDF716 /* AccountBalanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalanceService.swift; sourceTree = "<group>"; };
 		793B22982D3BE34D00720058 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		793B229B2D3BE62B00720058 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		793B229D2D3BE63800720058 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -250,6 +256,7 @@
 		792341BF2D3E56D000EDF716 /* JSONs */ = {
 			isa = PBXGroup;
 			children = (
+				792342052D4147D700EDF716 /* account-balance.json */,
 				792341FC2D41218800EDF716 /* transactions.json */,
 				792341C02D3E56E000EDF716 /* bpi-currentprice.json */,
 			);
@@ -259,6 +266,7 @@
 		792341C92D3E5AD500EDF716 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				792342082D41492D00EDF716 /* AccountBalanceEntity.swift */,
 				792341FE2D4122EA00EDF716 /* TransactionEntities.swift */,
 				792341C72D3E5ACF00EDF716 /* BPICourceEntities.swift */,
 			);
@@ -278,6 +286,7 @@
 			children = (
 				792341D42D3E8A4000EDF716 /* CurrentPriceService.swift */,
 				792342002D412DE300EDF716 /* TransactionsService.swift */,
+				7923420A2D41498700EDF716 /* AccountBalanceService.swift */,
 			);
 			path = EndpointServices;
 			sourceTree = "<group>";
@@ -516,6 +525,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				792342092D41493C00EDF716 /* AccountBalanceEntity.swift in Sources */,
 				0D1540612D22EF5D00D6D63F /* AnalyticsEvent.swift in Sources */,
 				0DF1D1432D22DCD8001626E7 /* PerformOnce.swift in Sources */,
 				792341C32D3E594300EDF716 /* NetworkService.swift in Sources */,
@@ -536,12 +546,14 @@
 				1CA3B6562D22B0F500176711 /* AppDelegate.swift in Sources */,
 				1CA3B6582D22B0F500176711 /* SceneDelegate.swift in Sources */,
 				1CA3B6602D22B0F500176711 /* TransactionsTestTask.xcdatamodeld in Sources */,
+				792342062D41480000EDF716 /* account-balance.json in Sources */,
 				792341E32D3FCE2C00EDF716 /* NetworkErrors.swift in Sources */,
 				792341E92D3FF64500EDF716 /* BaseProtocols.swift in Sources */,
 				792341DA2D3E914C00EDF716 /* APIEndpoint.swift in Sources */,
 				792341C82D3E5AD000EDF716 /* BPICourceEntities.swift in Sources */,
 				792341CC2D3E605E00EDF716 /* ErrorProcessor.swift in Sources */,
 				0DF1D1402D22DC51001626E7 /* ServicesAssembler.swift in Sources */,
+				7923420B2D41498900EDF716 /* AccountBalanceService.swift in Sources */,
 				79ACBF5B2D3D2B7A00EB9968 /* Eventable.swift in Sources */,
 				792341DF2D3FBC4300EDF716 /* ResponseProcessor.swift in Sources */,
 				792341B72D3D471700EDF716 /* AppCoordinatorViewModel.swift in Sources */,
