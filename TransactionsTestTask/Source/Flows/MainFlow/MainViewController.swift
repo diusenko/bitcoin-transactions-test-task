@@ -22,7 +22,7 @@ final class MainViewController<ViewModel: MainViewModel,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.viewModel?.updateCurrentPriceModel()
+        self.viewModel?.fetchBPIRate()
         self.viewModel?.fetchTransactions()
         self.viewModel?.fetchBalance()
     }
@@ -32,7 +32,7 @@ final class MainViewController<ViewModel: MainViewModel,
     override func process(events: ViewModel.Events) {
         super.process(events: events)
         switch events {
-        case .currentPriceUpdated(let model):
+        case .bpiRateUpdated(let model):
             self.updateBPI(with: model)
         case .transactionsUpdated(let transactions): break
         case .balanceUpdated(let model):
