@@ -21,7 +21,7 @@ class BaseViewController<ViewModel: Eventable,
     // MARK: - Private Properties
     
     private(set) var viewModel: ViewModel?
-    private(set) var uiView: BaseView?
+    private(set) var uiView: View?
     private var cancellable: Set<AnyCancellable> = []
     
     // MARK: - ViewController Lifecycle

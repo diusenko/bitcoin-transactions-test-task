@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Current Price Model
 
-struct Bitcoin: Codable {
+struct BPIRate: Codable {
     let time: Time
     let chartName: String
     let bpi: BPI
@@ -34,12 +34,11 @@ struct BPI: Codable {
 struct Currency: Codable {
     let code: String
     let symbol: String
-    let rate: String
+    let rate: Float
     let description: String
-    let rateFloat: Double
 
     enum CodingKeys: String, CodingKey {
-        case code, symbol, rate, description
-        case rateFloat = "rate_float"
+        case code, symbol, description
+        case rate = "rate_float"
     }
 }
