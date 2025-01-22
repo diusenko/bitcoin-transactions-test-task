@@ -68,6 +68,9 @@ final class NetworkServiceImpl: NetworkService {
     private func createURLSessionPublisher<T: Decodable>(with request: URLRequest) -> AnyPublisher<T, Error> {
         let errorMessage = LocalizationConstants.NetworkErrors.unexpectedError
         let unexpectedError = NetworkErrors.unexpected(error: errorMessage)
+        // TODO: - Need to separate Decoder to entity
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .secondsSince1970
         
         return URLSession.shared
             .dataTaskPublisher(for: request)
@@ -81,7 +84,7 @@ final class NetworkServiceImpl: NetworkService {
                 return try self.responseProcessor.process(response: response,
                                                           data: data)
             }
-            .decode(type: T.self, decoder: JSONDecoder())
+            .decode(type: T.self, decoder: decoder)
             .mapError { [weak self] error -> Error in
                 self?.errorProcessor.converted(error: error) ?? unexpectedError
             }
