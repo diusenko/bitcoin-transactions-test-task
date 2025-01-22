@@ -12,7 +12,7 @@ import Combine
 
 /// Need to create Interactor for redeiving models and VM will be only prepear titles for VC
 enum MainViewModelEvents {
-    case currentPriceUpdated(BPIRatePresentationModel)
+    case bpiRateUpdated(BPIRatePresentationModel)
     case transactionsUpdated([TransactionDetail])
     case balanceUpdated(BalancePresentationModel)
     case updateFailed
@@ -21,7 +21,7 @@ enum MainViewModelEvents {
 // MARK: - Protocol
 
 protocol MainViewModel: ViewModel where Events == MainViewModelEvents {
-    func updateCurrentPriceModel()
+    func fetchBPIRate()
     func fetchTransactions()
     func fetchBalance()
 }
@@ -39,7 +39,7 @@ final class MainViewModelImpl: MainViewModel {
     // MARK: - Private Properties
     
     private var subject = PassthroughSubject<MainViewModelEvents, Never>()
-    private var currentPriceService: CurrentPriceService
+    private var bpiRateFetcherService: BPIRateFetcherService
     private var transactionService: TransactionsService
     private var accountBalanceService: AccountBalanceService
     private var cancelable: Set<AnyCancellable> = []
@@ -58,19 +58,19 @@ final class MainViewModelImpl: MainViewModel {
     
     // MARK: - Init
     
-    init(with currentPriceService: CurrentPriceService,
+    init(with bpiRateFetcherService: BPIRateFetcherService,
          and transactionService: TransactionsService,
          and accountBalanceService: AccountBalanceService
     ) {
-        self.currentPriceService = currentPriceService
+        self.bpiRateFetcherService = bpiRateFetcherService
         self.transactionService = transactionService
         self.accountBalanceService = accountBalanceService
     }
     
     // MARK: - Final Functions
     
-    func updateCurrentPriceModel() {
-        self.currentPriceService.fetchCurrentPrice().sink { [weak self] completion in
+    func fetchBPIRate () {
+        self.bpiRateFetcherService.fetchBPIRate().sink { [weak self] completion in
             if case .failure(_) = completion {
                 self?.sendEventOnMain(.updateFailed)
             }
@@ -103,7 +103,7 @@ final class MainViewModelImpl: MainViewModel {
         let presentationModel = BPIRatePresentationModel(rate: rate,
                                                          currencyCode: code)
         
-        self.sendEventOnMain(.currentPriceUpdated(presentationModel))
+        self.sendEventOnMain(.bpiRateUpdated(presentationModel))
     }
     
     private func sendBalanceUpdatedEvent(with model: AccountBalance) {

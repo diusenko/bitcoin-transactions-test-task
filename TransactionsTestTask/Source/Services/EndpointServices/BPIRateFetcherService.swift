@@ -9,14 +9,14 @@ import Combine
 
 // MARK: - Crypto Price Service Protocol
 
-protocol CurrentPriceService {
+protocol BPIRateFetcherService {
     
-    func fetchCurrentPrice() -> AnyPublisher<BPIRate, Error>
+    func fetchBPIRate() -> AnyPublisher<BPIRate, Error>
 }
 
 // MARK: - Crypto Price Service Implementation
 
-final class CurrentPriceServiceImpl: CurrentPriceService {
+final class BPIRateFetcherServiceImpl: BPIRateFetcherService {
     
     // MARK: - Private Properties
     
@@ -30,7 +30,7 @@ final class CurrentPriceServiceImpl: CurrentPriceService {
     
     // MARK: - Internal Functions
     
-    func fetchCurrentPrice() -> AnyPublisher<BPIRate, Error> {
+    func fetchBPIRate() -> AnyPublisher<BPIRate, Error> {
         let endPoint = APIEndpoint.currentPriceEndpoint()
         
         return networkService.request(endPoint, method: .get)
