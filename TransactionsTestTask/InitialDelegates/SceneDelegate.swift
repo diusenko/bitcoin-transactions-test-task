@@ -61,13 +61,16 @@ extension SceneDelegate {
         window.makeKeyAndVisible()
     }
     
+    // MARK: TODO: Need to create DependencyInjectorService
+    /// (Service Assembler) I think its supose to be this thing
     private func initializedViewController() -> UIViewController {
         let errorProcessor = ErrorProcessorImpl()
         let responseProcessor = ResponseProcessorImpl()
         let networkService = NetworkServiceImpl(errorProcessor: errorProcessor,
                                                 responseProcessor: responseProcessor)
         let currentPriceService = CurrentPriceServiceImpl(networkService: networkService)
-        let viewModel = MainViewModelImpl(with: currentPriceService)
+        let transactionService = TransactionsServiceImpl(networkService: networkService)
+        let viewModel = MainViewModelImpl(with: currentPriceService, and: transactionService)
         let view = MainViewImpl()
         let viewController = MainViewController<MainViewModelImpl, MainViewImpl>()
         viewController.attach(view: view)

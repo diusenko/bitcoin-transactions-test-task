@@ -34,8 +34,11 @@
 		792341EB2D40201400EDF716 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792341EA2D40201300EDF716 /* MainView.swift */; };
 		792341ED2D40F55F00EDF716 /* BaseUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792341EC2D40F55300EDF716 /* BaseUIView.swift */; };
 		792341F42D410E9300EDF716 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792341F32D410E9200EDF716 /* CustomTableViewCell.swift */; };
+		792341FB2D41160B00EDF716 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792341FA2D41160B00EDF716 /* UITableViewExtension.swift */; };
 		792341FD2D41219000EDF716 /* transactions.json in Resources */ = {isa = PBXBuildFile; fileRef = 792341FC2D41218800EDF716 /* transactions.json */; };
 		792341FF2D4122ED00EDF716 /* TransactionEntities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792341FE2D4122EA00EDF716 /* TransactionEntities.swift */; };
+		792342012D412DE400EDF716 /* TransactionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792342002D412DE300EDF716 /* TransactionsService.swift */; };
+		792342042D412E0C00EDF716 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792342032D412E0900EDF716 /* DateExtension.swift */; };
 		793B22992D3BE34F00720058 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B22982D3BE34D00720058 /* AppCoordinator.swift */; };
 		793B229C2D3BE63300720058 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B229B2D3BE62B00720058 /* MainViewController.swift */; };
 		793B229E2D3BE63E00720058 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B229D2D3BE63800720058 /* MainViewModel.swift */; };
@@ -91,8 +94,11 @@
 		792341EA2D40201300EDF716 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		792341EC2D40F55300EDF716 /* BaseUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUIView.swift; sourceTree = "<group>"; };
 		792341F32D410E9200EDF716 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		792341FA2D41160B00EDF716 /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		792341FC2D41218800EDF716 /* transactions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = transactions.json; sourceTree = "<group>"; };
 		792341FE2D4122EA00EDF716 /* TransactionEntities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionEntities.swift; sourceTree = "<group>"; };
+		792342002D412DE300EDF716 /* TransactionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsService.swift; sourceTree = "<group>"; };
+		792342032D412E0900EDF716 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		793B22982D3BE34D00720058 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		793B229B2D3BE62B00720058 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		793B229D2D3BE63800720058 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -271,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				792341D42D3E8A4000EDF716 /* CurrentPriceService.swift */,
+				792342002D412DE300EDF716 /* TransactionsService.swift */,
 			);
 			path = EndpointServices;
 			sourceTree = "<group>";
@@ -299,6 +306,15 @@
 				792341F32D410E9200EDF716 /* CustomTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		792341F92D4115FA00EDF716 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				792342032D412E0900EDF716 /* DateExtension.swift */,
+				792341FA2D41160B00EDF716 /* UITableViewExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		793B22912D3BDF7300720058 /* Assets */ = {
@@ -332,6 +348,7 @@
 				792341CD2D3E625300EDF716 /* Constants */,
 				792341C92D3E5AD500EDF716 /* Entities */,
 				79ACBF552D3D2B3800EB9968 /* Protocols */,
+				792341F92D4115FA00EDF716 /* Extensions */,
 				792341E02D3FC07000EDF716 /* Processors */,
 				0DF1D13E2D22DC2D001626E7 /* Services */,
 				793B22962D3BE32700720058 /* Coordinators */,
@@ -502,8 +519,10 @@
 				0D1540612D22EF5D00D6D63F /* AnalyticsEvent.swift in Sources */,
 				0DF1D1432D22DCD8001626E7 /* PerformOnce.swift in Sources */,
 				792341C32D3E594300EDF716 /* NetworkService.swift in Sources */,
+				792341FB2D41160B00EDF716 /* UITableViewExtension.swift in Sources */,
 				792341F42D410E9300EDF716 /* CustomTableViewCell.swift in Sources */,
 				792341FF2D4122ED00EDF716 /* TransactionEntities.swift in Sources */,
+				792342012D412DE400EDF716 /* TransactionsService.swift in Sources */,
 				0DF1D1452D22DD06001626E7 /* BitcoinRateService.swift in Sources */,
 				793B22992D3BE34F00720058 /* AppCoordinator.swift in Sources */,
 				792341ED2D40F55F00EDF716 /* BaseUIView.swift in Sources */,
@@ -512,6 +531,7 @@
 				0DF1D1472D22DD4A001626E7 /* AnalyticsService.swift in Sources */,
 				792341CF2D3E626700EDF716 /* LocalizationConstants.swift in Sources */,
 				792341BC2D3D7C5E00EDF716 /* BaseViewController.swift in Sources */,
+				792342042D412E0C00EDF716 /* DateExtension.swift in Sources */,
 				792341D52D3E8A4100EDF716 /* CurrentPriceService.swift in Sources */,
 				1CA3B6562D22B0F500176711 /* AppDelegate.swift in Sources */,
 				1CA3B6582D22B0F500176711 /* SceneDelegate.swift in Sources */,

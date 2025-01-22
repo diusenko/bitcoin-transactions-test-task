@@ -30,6 +30,7 @@ final class MainViewController<ViewModel: MainViewModel,
     func getCurrentPrice() {
         self.uiView?.showIndicator()
         self.viewModel?.updateCurrentPriceModel()
+        self.viewModel?.fetchTransactions()
     }
     
     // MARK: BaseViewController
@@ -37,7 +38,8 @@ final class MainViewController<ViewModel: MainViewModel,
     override func process(events: ViewModel.Events) {
         super.process(events: events)
         switch events {
-        case .currentPriceModelUpdated(_): break
+        case .currentPriceModelUpdated(let currentPrice): break
+        case .transactionsUpdated(let transactions): break
         case .updateFailed:
             self.view.backgroundColor = .red
         }
