@@ -1,0 +1,567 @@
+[
+  {
+    "date": 1737207501,
+    "transactions": [
+      {
+        "time": 47321,
+        "bitcoins": 7,
+        "transactionType": {
+          "type": "expense",
+          "category": "taxi"
+        }
+      },
+      {
+        "time": 47681,
+        "bitcoins": 13,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 48041,
+        "bitcoins": 11,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 48401,
+        "bitcoins": 20,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 48761,
+        "bitcoins": 6,
+        "transactionType": {
+          "type": "expense",
+          "category": "restaurant"
+        }
+      },
+      {
+        "time": 49121,
+        "bitcoins": 1,
+        "transactionType": {
+          "type": "expense",
+          "category": "restaurant"
+        }
+      },
+      {
+        "time": 49481,
+        "bitcoins": 5,
+        "transactionType": {
+          "type": "expense",
+          "category": "groceries"
+        }
+      },
+      {
+        "time": 49841,
+        "bitcoins": 8,
+        "transactionType": {
+          "type": "expense",
+          "category": "restaurant"
+        }
+      },
+      {
+        "time": 50201,
+        "bitcoins": 7,
+        "transactionType": {
+          "type": "expense",
+          "category": "groceries"
+        }
+      },
+      {
+        "time": 50561,
+        "bitcoins": 12,
+        "transactionType": {
+          "type": "income"
+        }
+      }
+    ]
+  },
+  {
+    "date": 1737121101,
+    "transactions": [
+      {
+        "time": 47321,
+        "bitcoins": 6,
+        "transactionType": {
+          "type": "expense",
+          "category": "groceries"
+        }
+      },
+      {
+        "time": 47681,
+        "bitcoins": 8,
+        "transactionType": {
+          "type": "expense",
+          "category": "groceries"
+        }
+      },
+      {
+        "time": 48041,
+        "bitcoins": 13,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 48401,
+        "bitcoins": 13,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 48761,
+        "bitcoins": 10,
+        "transactionType": {
+          "type": "expense",
+          "category": "other"
+        }
+      },
+      {
+        "time": 49121,
+        "bitcoins": 2,
+        "transactionType": {
+          "type": "expense",
+          "category": "restaurant"
+        }
+      },
+      {
+        "time": 49481,
+        "bitcoins": 13,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 49841,
+        "bitcoins": 2,
+        "transactionType": {
+          "type": "expense",
+          "category": "taxi"
+        }
+      },
+      {
+        "time": 50201,
+        "bitcoins": 2,
+        "transactionType": {
+          "type": "expense",
+          "category": "restaurant"
+        }
+      },
+      {
+        "time": 50561,
+        "bitcoins": 14,
+        "transactionType": {
+          "type": "income"
+        }
+      }
+    ]
+  },
+  {
+    "date": 1737034701,
+    "transactions": [
+      {
+        "time": 47321,
+        "bitcoins": 18,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 47681,
+        "bitcoins": 8,
+        "transactionType": {
+          "type": "expense",
+          "category": "electronics"
+        }
+      },
+      {
+        "time": 48041,
+        "bitcoins": 5,
+        "transactionType": {
+          "type": "expense",
+          "category": "groceries"
+        }
+      },
+      {
+        "time": 48401,
+        "bitcoins": 16,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 48761,
+        "bitcoins": 3,
+        "transactionType": {
+          "type": "expense",
+          "category": "other"
+        }
+      },
+      {
+        "time": 49121,
+        "bitcoins": 5,
+        "transactionType": {
+          "type": "expense",
+          "category": "taxi"
+        }
+      },
+      {
+        "time": 49481,
+        "bitcoins": 18,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 49841,
+        "bitcoins": 15,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 50201,
+        "bitcoins": 16,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 50561,
+        "bitcoins": 6,
+        "transactionType": {
+          "type": "expense",
+          "category": "other"
+        }
+      }
+    ]
+  },
+  {
+    "date": 1736948301,
+    "transactions": [
+      {
+        "time": 47321,
+        "bitcoins": 15,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 47681,
+        "bitcoins": 2,
+        "transactionType": {
+          "type": "expense",
+          "category": "restaurant"
+        }
+      },
+      {
+        "time": 48041,
+        "bitcoins": 6,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 48401,
+        "bitcoins": 9,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 48761,
+        "bitcoins": 4,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 49121,
+        "bitcoins": 6,
+        "transactionType": {
+          "type": "expense",
+          "category": "taxi"
+        }
+      },
+      {
+        "time": 49481,
+        "bitcoins": 10,
+        "transactionType": {
+          "type": "expense",
+          "category": "electronics"
+        }
+      },
+      {
+        "time": 49841,
+        "bitcoins": 4,
+        "transactionType": {
+          "type": "expense",
+          "category": "taxi"
+        }
+      },
+      {
+        "time": 50201,
+        "bitcoins": 6,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 50561,
+        "bitcoins": 10,
+        "transactionType": {
+          "type": "expense",
+          "category": "taxi"
+        }
+      }
+    ]
+  },
+  {
+    "date": 1736861901,
+    "transactions": [
+      {
+        "time": 47321,
+        "bitcoins": 9,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 47681,
+        "bitcoins": 1,
+        "transactionType": {
+          "type": "expense",
+          "category": "electronics"
+        }
+      },
+      {
+        "time": 48041,
+        "bitcoins": 1,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 48401,
+        "bitcoins": 10,
+        "transactionType": {
+          "type": "expense",
+          "category": "electronics"
+        }
+      },
+      {
+        "time": 48761,
+        "bitcoins": 8,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 49121,
+        "bitcoins": 6,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 49481,
+        "bitcoins": 6,
+        "transactionType": {
+          "type": "expense",
+          "category": "other"
+        }
+      },
+      {
+        "time": 49841,
+        "bitcoins": 4,
+        "transactionType": {
+          "type": "expense",
+          "category": "restaurant"
+        }
+      },
+      {
+        "time": 50201,
+        "bitcoins": 6,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 50561,
+        "bitcoins": 2,
+        "transactionType": {
+          "type": "expense",
+          "category": "restaurant"
+        }
+      }
+    ]
+  },
+  {
+    "date": 1736775501,
+    "transactions": [
+      {
+        "time": 47321,
+        "bitcoins": 1,
+        "transactionType": {
+          "type": "expense",
+          "category": "restaurant"
+        }
+      },
+      {
+        "time": 47681,
+        "bitcoins": 4,
+        "transactionType": {
+          "type": "expense",
+          "category": "taxi"
+        }
+      },
+      {
+        "time": 48041,
+        "bitcoins": 2,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 48401,
+        "bitcoins": 4,
+        "transactionType": {
+          "type": "expense",
+          "category": "taxi"
+        }
+      },
+      {
+        "time": 48761,
+        "bitcoins": 3,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 49121,
+        "bitcoins": 8,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 49481,
+        "bitcoins": 8,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 49841,
+        "bitcoins": 4,
+        "transactionType": {
+          "type": "expense",
+          "category": "other"
+        }
+      },
+      {
+        "time": 50201,
+        "bitcoins": 6,
+        "transactionType": {
+          "type": "expense",
+          "category": "taxi"
+        }
+      },
+      {
+        "time": 50561,
+        "bitcoins": 1,
+        "transactionType": {
+          "type": "expense",
+          "category": "taxi"
+        }
+      }
+    ]
+  },
+  {
+    "date": 1736689101,
+    "transactions": [
+      {
+        "time": 47321,
+        "bitcoins": 10,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 47681,
+        "bitcoins": 6,
+        "transactionType": {
+          "type": "expense",
+          "category": "groceries"
+        }
+      },
+      {
+        "time": 48041,
+        "bitcoins": 5,
+        "transactionType": {
+          "type": "income"
+        }
+      },
+      {
+        "time": 48401,
+        "bitcoins": 10,
+        "transactionType": {
+          "type": "expense",
+          "category": "other"
+        }
+      },
+      {
+        "time": 48761,
+        "bitcoins": 3,
+        "transactionType": {
+          "type": "expense",
+          "category": "taxi"
+        }
+      },
+      {
+        "time": 49121,
+        "bitcoins": 2,
+        "transactionType": {
+          "type": "expense",
+          "category": "groceries"
+        }
+      },
+      {
+        "time": 49481,
+        "bitcoins": 7,
+        "transactionType": {
+          "type": "expense",
+          "category": "restaurant"
+        }
+      },
+      {
+        "time": 49841,
+        "bitcoins": 2,
+        "transactionType": {
+          "type": "expense",
+          "category": "electronics"
+        }
+      },
+      {
+        "time": 50201,
+        "bitcoins": 7,
+        "transactionType": {
+          "type": "expense",
+          "category": "taxi"
+        }
+      },
+      {
+        "time": 50561,
+        "bitcoins": 5,
+        "transactionType": {
+          "type": "income"
+        }
+      }
+    ]
+  }
+]
