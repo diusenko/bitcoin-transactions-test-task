@@ -11,7 +11,7 @@ import Combine
 
 protocol CurrentPriceService {
     
-    func fetchCurrentPrice() -> AnyPublisher<Bitcoin, Error>
+    func fetchCurrentPrice() -> AnyPublisher<BPIRate, Error>
 }
 
 // MARK: - Crypto Price Service Implementation
@@ -30,7 +30,7 @@ final class CurrentPriceServiceImpl: CurrentPriceService {
     
     // MARK: - Internal Functions
     
-    func fetchCurrentPrice() -> AnyPublisher<Bitcoin, Error> {
+    func fetchCurrentPrice() -> AnyPublisher<BPIRate, Error> {
         let endPoint = APIEndpoint.currentPriceEndpoint()
         
         return networkService.request(endPoint, method: .get)
