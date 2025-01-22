@@ -44,6 +44,8 @@
 		7923420F2D4166DC00EDF716 /* accountbalance.json in Resources */ = {isa = PBXBuildFile; fileRef = 7923420E2D4166D500EDF716 /* accountbalance.json */; };
 		792342112D41742300EDF716 /* BPIRatePresentationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792342102D41742200EDF716 /* BPIRatePresentationModel.swift */; };
 		792342132D417EF900EDF716 /* BalancePresentationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792342122D417EF500EDF716 /* BalancePresentationModel.swift */; };
+		7923421A2D41A13900EDF716 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792342192D41A13700EDF716 /* Timer.swift */; };
+		7923421D2D41A32500EDF716 /* DispatchQueueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7923421C2D41A32300EDF716 /* DispatchQueueExtension.swift */; };
 		793B22992D3BE34F00720058 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B22982D3BE34D00720058 /* AppCoordinator.swift */; };
 		793B229C2D3BE63300720058 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B229B2D3BE62B00720058 /* MainViewController.swift */; };
 		793B229E2D3BE63E00720058 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B229D2D3BE63800720058 /* MainViewModel.swift */; };
@@ -109,6 +111,8 @@
 		7923420E2D4166D500EDF716 /* accountbalance.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = accountbalance.json; sourceTree = "<group>"; };
 		792342102D41742200EDF716 /* BPIRatePresentationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPIRatePresentationModel.swift; sourceTree = "<group>"; };
 		792342122D417EF500EDF716 /* BalancePresentationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalancePresentationModel.swift; sourceTree = "<group>"; };
+		792342192D41A13700EDF716 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		7923421C2D41A32300EDF716 /* DispatchQueueExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueExtension.swift; sourceTree = "<group>"; };
 		793B22982D3BE34D00720058 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		793B229B2D3BE62B00720058 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		793B229D2D3BE63800720058 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -270,6 +274,7 @@
 		792341C92D3E5AD500EDF716 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				7923421E2D41B54400EDF716 /* Timer */,
 				7923420D2D4159A600EDF716 /* PresentationModels */,
 				7923420C2D41599000EDF716 /* APIModels */,
 			);
@@ -323,6 +328,7 @@
 		792341F92D4115FA00EDF716 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7923421C2D41A32300EDF716 /* DispatchQueueExtension.swift */,
 				792342032D412E0900EDF716 /* DateExtension.swift */,
 				792341FA2D41160B00EDF716 /* UITableViewExtension.swift */,
 			);
@@ -346,6 +352,14 @@
 				792342102D41742200EDF716 /* BPIRatePresentationModel.swift */,
 			);
 			path = PresentationModels;
+			sourceTree = "<group>";
+		};
+		7923421E2D41B54400EDF716 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				792342192D41A13700EDF716 /* Timer.swift */,
+			);
+			path = Timer;
 			sourceTree = "<group>";
 		};
 		793B22912D3BDF7300720058 /* Assets */ = {
@@ -553,6 +567,7 @@
 				0DF1D1432D22DCD8001626E7 /* PerformOnce.swift in Sources */,
 				792341C32D3E594300EDF716 /* NetworkService.swift in Sources */,
 				792341FB2D41160B00EDF716 /* UITableViewExtension.swift in Sources */,
+				7923421D2D41A32500EDF716 /* DispatchQueueExtension.swift in Sources */,
 				792341F42D410E9300EDF716 /* CustomTableViewCell.swift in Sources */,
 				792341FF2D4122ED00EDF716 /* TransactionEntities.swift in Sources */,
 				792342012D412DE400EDF716 /* TransactionsService.swift in Sources */,
@@ -578,6 +593,7 @@
 				0DF1D1402D22DC51001626E7 /* ServicesAssembler.swift in Sources */,
 				7923420B2D41498900EDF716 /* AccountBalanceService.swift in Sources */,
 				792342112D41742300EDF716 /* BPIRatePresentationModel.swift in Sources */,
+				7923421A2D41A13900EDF716 /* Timer.swift in Sources */,
 				79ACBF5B2D3D2B7A00EB9968 /* Eventable.swift in Sources */,
 				792341DF2D3FBC4300EDF716 /* ResponseProcessor.swift in Sources */,
 				792341B72D3D471700EDF716 /* AppCoordinatorViewModel.swift in Sources */,
