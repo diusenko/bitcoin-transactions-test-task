@@ -10,10 +10,11 @@ import Combine
 
 // MARK: - Types
 
+/// Need to create Interactor for redeiving models and VM will be only prepear titles for VC
 enum MainViewModelEvents {
-    case currentPriceModelUpdated(Bitcoin)
+    case currentPriceUpdated(BPIRatePresentationModel)
     case transactionsUpdated([TransactionDetail])
-    case balanceUpdated(AccountBalance)
+    case balanceUpdated(BalancePresentationModel)
     case updateFailed
 }
 
@@ -43,6 +44,10 @@ final class MainViewModelImpl: MainViewModel {
     private var accountBalanceService: AccountBalanceService
     private var cancelable: Set<AnyCancellable> = []
     
+    private var transactions: [TransactionDetail] = []
+    private var accountBalance: AccountBalance?
+    private var currentPrice: BPIRate?
+    
     // MARK: - Deinit
     
     deinit {
@@ -69,9 +74,8 @@ final class MainViewModelImpl: MainViewModel {
             if case .failure(_) = completion {
                 self?.sendEventOnMain(.updateFailed)
             }
-            self?.cancelSubscriprions()
         } receiveValue: { [weak self] model in
-            self?.sendEventOnMain(.currentPriceModelUpdated(model))
+            self?.sendUpdatedBPIRateEvent(with: model)
         }.store(in: &self.cancelable)
     }
     
@@ -80,18 +84,33 @@ final class MainViewModelImpl: MainViewModel {
             print(error)
         } receiveValue: { model in
             print(model)
-        }.store(in: &cancelable)
+        }.store(in: &self.cancelable)
     }
     
     func fetchBalance() {
         self.accountBalanceService.fetchBalance().sink { error in
             print(error)
-        } receiveValue: { model in
-            print(model)
-        }.store(in: &cancelable)
+        } receiveValue: { [weak self] model in
+            self?.sendBalanceUpdatedEvent(with: model)
+        }.store(in: &self.cancelable)
     }
     
     // MARK: Private Functions
+    
+    private func sendUpdatedBPIRateEvent(with model: BPIRate) {
+        let rate = model.bpi.USD.rate
+        let code = model.bpi.USD.code
+        let presentationModel = BPIRatePresentationModel(rate: rate,
+                                                         currencyCode: code)
+        
+        self.sendEventOnMain(.currentPriceUpdated(presentationModel))
+    }
+    
+    private func sendBalanceUpdatedEvent(with model: AccountBalance) {
+        let presentationModel = BalancePresentationModel(balance: model.balance)
+        
+        self.sendEventOnMain(.balanceUpdated(presentationModel))
+    }
     
     private func sendEventOnMain(_ event: MainViewModelEvents?) {
         if let event = event {
