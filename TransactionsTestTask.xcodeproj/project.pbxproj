@@ -156,12 +156,12 @@
 		0DF1D13E2D22DC2D001626E7 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				792342252D42787700EDF716 /* BitcoinRateService */,
 				0DF1D1412D22DCC3001626E7 /* Helpers */,
 				0D15405F2D22EF3400D6D63F /* AnalyticsService */,
 				792341D32D3E8A2A00EDF716 /* EndpointServices */,
 				792341BD2D3E563C00EDF716 /* NetworkService */,
 				0DF1D13F2D22DC4B001626E7 /* ServicesAssembler.swift */,
-				0DF1D1442D22DCFF001626E7 /* BitcoinRateService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -360,6 +360,14 @@
 				792342192D41A13700EDF716 /* Timer.swift */,
 			);
 			path = Timer;
+			sourceTree = "<group>";
+		};
+		792342252D42787700EDF716 /* BitcoinRateService */ = {
+			isa = PBXGroup;
+			children = (
+				0DF1D1442D22DCFF001626E7 /* BitcoinRateService.swift */,
+			);
+			path = BitcoinRateService;
 			sourceTree = "<group>";
 		};
 		793B22912D3BDF7300720058 /* Assets */ = {

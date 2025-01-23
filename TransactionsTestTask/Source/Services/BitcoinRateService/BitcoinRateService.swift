@@ -12,21 +12,29 @@ import Combine
 /// Rate should be cached for the offline mode
 /// Every successful fetch should be logged with analytics service
 /// The service should be covered by unit tests
-protocol BitcoinRateService: AnyObject {
+
+enum BitcoinRateServiceEvents {
     
-    var onRateUpdate: ((BPIRate) -> Void)? { get set }
-    var saveCurentRate: (() -> ())? { get set }
+    case bpiUpdated(BPIRate)
+    case needsToSave(BPIRate)
+    case updatingFailed(Error)
 }
 
-final class BitcoinRateServiceImpl: BitcoinRateService {
+protocol BitcoinRateService: Eventable {
+    func startUpdating()
+}
 
-    var saveCurentRate: (() -> ())?
-    var onRateUpdate: ((BPIRate) -> Void)?
+/// Do NOT write code at 2 a.m.
+final class BitcoinRateServiceImpl: BitcoinRateService {
+        
+    var events: AnyPublisher<BitcoinRateServiceEvents, Never>? {
+        return subject.eraseToAnyPublisher()
+    }
     
     private let bpiRateFetcherService: BPIRateFetcherService
     private let timer: Timer
     private let customSerialQueue: DispatchQueue
-    
+    private var subject = PassthroughSubject<BitcoinRateServiceEvents, Never>()
     private var cancelableBpiRate: Set<AnyCancellable> = []
     private var currentBPIRate: BPIRate?
     
@@ -38,7 +46,7 @@ final class BitcoinRateServiceImpl: BitcoinRateService {
     
     // MARK: - Init
     
-    init(rate: BPIRate?,
+    init(rate: BPIRate? = nil,
          bpiRateFetcherService: BPIRateFetcherService,
          timer: Timer,
          queue: DispatchQueue = DispatchQueue.customSerialQueue(with: BitcoinRateServiceImpl.Type.self)
@@ -76,9 +84,9 @@ extension BitcoinRateServiceImpl {
             .fetchBPIRate()
             .sink
         { [weak self] completion in
-            if case .failure(_ ) = completion {
+            if case .failure(let error) = completion {
                 self?.stopUpdating()
-                self?.saveCurentRate?()
+                self?.subject.send(.updatingFailed(error))
             }
         } receiveValue: { [weak self] model in
             self?.update(rate: model)
@@ -87,10 +95,10 @@ extension BitcoinRateServiceImpl {
     
     private func update(rate: BPIRate) {
         if self.currentBPIRate == nil {
-            self.saveCurentRate?()
+            self.subject.send(.needsToSave(rate))
         }
         self.currentBPIRate = rate
-        self.onRateUpdate?(rate)
+        self.subject.send(.bpiUpdated(rate))
     }
     
     private func stopUpdating() {
