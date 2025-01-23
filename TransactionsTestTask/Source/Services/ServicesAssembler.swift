@@ -11,30 +11,64 @@
 /// It's ok to move the logging to model/viewModel/interactor/etc when you have 1-2 modules in your app
 /// Imagine having rate updates in 20-50 diffent modules
 /// Make this logic not depending on any module
-enum ServicesAssembler {
-    
-    // MARK: - BitcoinRateService
-    
-    static let bitcoinRateService: PerformOnce<BitcoinRateService> = {
-        lazy var analyticsService = Self.analyticsService()
-        
-        let service = BitcoinRateServiceImpl()
-        
-        service.onRateUpdate = {
-            analyticsService.trackEvent(
-                name: "bitcoin_rate_update",
-                parameters: ["rate": String(format: "%.2f", $0)]
-            )
-        }
-        
-        return { service }
+
+protocol ServicesAssembler {
+    var bitcoinRateService: AnyBitcoinRateService { get }
+}
+
+final class ServicesAssemblerImpl: ServicesAssembler {
+
+    // MARK: - Public Lazy Properties
+
+    var bitcoinRateService: AnyBitcoinRateService {
+        return self._bitcoinRateService
+    }
+
+    // MARK: - Private Lazy Properties
+
+    private lazy var _bitcoinRateService: AnyBitcoinRateService = {
+        let concreteService = BitcoinRateServiceImpl(
+            bpiRateFetcherService: self._bpiRateFetcherService,
+            timer: self._timer
+        )
+        return AnyBitcoinRateService(concreteService)
+    }()
+
+    private lazy var _bpiRateFetcherService: BPIRateFetcherService = {
+        return BPIRateFetcherServiceImpl(networkService: self._networkService)
+    }()
+
+    private lazy var _networkService: NetworkService = {
+        return NetworkServiceImpl(
+            errorProcessor: self._errorProcessor,
+            responseProcessor: self._responseProcessor
+        )
+    }()
+
+    private lazy var _errorProcessor: ErrorProcessor = {
+        return ErrorProcessorImpl()
+    }()
+
+    private lazy var _responseProcessor: ResponseProcessor = {
+        return ResponseProcessorImpl()
+    }()
+
+    private lazy var _timer: Timer = {
+        return TimerIml()
+    }()
+
+    private lazy var _analyticsService: AnalyticsService = {
+        return AnalyticsServiceImpl()
     }()
     
-    // MARK: - AnalyticsService
-    
-    static let analyticsService: PerformOnce<AnalyticsService> = {
-        let service = AnalyticsServiceImpl()
+    private lazy var _subscriberLogger: SubscriberLoggerImpl = {
+        let logger = SubscriberLoggerImpl(analyticsService: self._analyticsService)
         
-        return { service }
+        if let bpi = self._bitcoinRateService.events {
+            let id = "\(type(of: self._bitcoinRateService))"
+            logger.addSubscription(publisher: bpi, with: id)
+        }
+        
+        return logger
     }()
 }
