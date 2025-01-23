@@ -12,30 +12,47 @@ import Foundation
 /// The minimal needed filters are: event name and date range
 /// The service should be covered by unit tests
 protocol AnalyticsService: AnyObject {
-    
-    func trackEvent(name: String, parameters: [String: String])
+    func trackEvent(type: AnalyticsEventType, parameters: [String: String])
+    func getEventsFilteredBy(types: [AnalyticsEventType]?, dateRange: ClosedRange<Date>?) -> [AnalyticsEvent]
 }
 
 final class AnalyticsServiceImpl {
     
-    private var events: [AnalyticsEvent] = []
+    private var events: [AnalyticsEventType: [AnalyticsEvent]] = [:]
+    private let queue = DispatchQueue(label: "com.analytics.service", attributes: .concurrent)
     
     // MARK: - Init
-    
-    init() {
-        
-    }
+    init() {}
 }
 
 extension AnalyticsServiceImpl: AnalyticsService {
     
-    func trackEvent(name: String, parameters: [String: String]) {
+    func trackEvent(type: AnalyticsEventType, parameters: [String: String]) {
         let event = AnalyticsEvent(
-            name: name,
+            type: type,
             parameters: parameters,
             date: .now
         )
         
-        events.append(event)
+        self.queue.async(flags: .barrier) { [weak self] in
+            self?.events[type, default: []].append(event)
+        }
+    }
+    
+    func getEventsFilteredBy(types: [AnalyticsEventType]?, dateRange: ClosedRange<Date>?) -> [AnalyticsEvent] {
+        self.queue.sync {
+            let filteredEvents: [AnalyticsEvent]
+            
+            if let types = types, !types.isEmpty {
+                filteredEvents = types.flatMap { self.events[$0, default: []] }
+            } else {
+                filteredEvents = self.events.values.flatMap { $0 }
+            }
+            
+            return filteredEvents.filter { event in
+                guard let range = dateRange else { return true }
+                return range.contains(event.date)
+            }
+        }
     }
 }
