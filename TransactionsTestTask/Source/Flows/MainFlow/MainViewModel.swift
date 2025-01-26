@@ -38,9 +38,7 @@ final class MainViewModelImpl: MainViewModel {
     
     // MARK: - Private Properties
     
-    private let bpiRateFetcherService: BPIRateFetcherService
-    private let transactionService: TransactionsService
-    private let accountBalanceService: AccountBalanceService
+    private let servicesAssembler: ServicesAssembler
     
     private var subject = PassthroughSubject<MainViewModelEvents, Never>()
     private var cancelable: Set<AnyCancellable> = []
@@ -59,29 +57,29 @@ final class MainViewModelImpl: MainViewModel {
     
     // MARK: - Init
     
-    init(with bpiRateFetcherService: BPIRateFetcherService,
-         and transactionService: TransactionsService,
-         and accountBalanceService: AccountBalanceService
-    ) {
-        self.bpiRateFetcherService = bpiRateFetcherService
-        self.transactionService = transactionService
-        self.accountBalanceService = accountBalanceService
+    init(with servicesAssembler: ServicesAssembler) {
+        self.servicesAssembler = servicesAssembler
     }
     
     // MARK: - Final Functions
     
     func fetchBPIRate () {
-        self.bpiRateFetcherService.fetchBPIRate().sink { [weak self] completion in
+        let bpiService = self.servicesAssembler.bitcoinRateService
+        bpiService.startUpdating()
+        bpiService.events?.sink { [weak self] completion in
             if case .failure(_) = completion {
                 self?.sendEventOnMain(.updateFailed)
             }
-        } receiveValue: { [weak self] model in
-            self?.sendUpdatedBPIRateEvent(with: model)
+        } receiveValue: { [weak self] event in
+            if case .bpiUpdated(let model) = event {
+                self?.sendUpdatedBPIRateEvent(with: model)
+            }
         }.store(in: &self.cancelable)
     }
     
     func fetchTransactions() {
-        self.transactionService.fetchTransactions().sink { error in
+        let transactionService = self.servicesAssembler.transactionService
+        transactionService.fetchTransactions().sink { error in
             print(error)
         } receiveValue: { model in
             print(model)
@@ -89,7 +87,8 @@ final class MainViewModelImpl: MainViewModel {
     }
     
     func fetchBalance() {
-        self.accountBalanceService.fetchBalance().sink { error in
+        let accountBalanceService = self.servicesAssembler.accountBalanceService
+        accountBalanceService.fetchBalance().sink { error in
             print(error)
         } receiveValue: { [weak self] model in
             self?.sendBalanceUpdatedEvent(with: model)
