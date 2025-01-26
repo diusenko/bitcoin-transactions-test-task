@@ -13,8 +13,16 @@ enum AnalyticsEventType: String {
     case deinited
 }
 
-struct AnalyticsEvent {
+struct AnalyticsEvent: CustomStringConvertible {
     let type: AnalyticsEventType
     let parameters: [String: String]
     let date: Date
+    
+    var description: String {
+        return type.rawValue
+        + "\n"
+        + date.debugDescription
+        + "\n"
+        + parameters.debugDescription
+    }
 }

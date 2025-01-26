@@ -5,6 +5,7 @@
 //
 
 import Foundation
+import OSLog
 
 /// Analytics Service is used for events logging
 /// The list of reasonable events is up to you
@@ -12,8 +13,10 @@ import Foundation
 /// The minimal needed filters are: event name and date range
 /// The service should be covered by unit tests
 protocol AnalyticsService: AnyObject {
-    func trackEvent(type: AnalyticsEventType, parameters: [String: String])
-    func getEventsFilteredBy(types: [AnalyticsEventType]?, dateRange: ClosedRange<Date>?) -> [AnalyticsEvent]
+    func trackEvent(type: AnalyticsEventType,
+                    parameters: [String: String])
+    func getEventsFilteredBy(types: [AnalyticsEventType]?,
+                             dateRange: ClosedRange<Date>?) -> [AnalyticsEvent]
 }
 
 final class AnalyticsServiceImpl {
@@ -27,19 +30,26 @@ final class AnalyticsServiceImpl {
 
 extension AnalyticsServiceImpl: AnalyticsService {
     
-    func trackEvent(type: AnalyticsEventType, parameters: [String: String]) {
+    func trackEvent(type: AnalyticsEventType,
+                    parameters: [String: String]
+    ) {
+        let logger = Logger()
         let event = AnalyticsEvent(
             type: type,
             parameters: parameters,
             date: .now
         )
-        
+        logger.debug("\(event.description)")
         self.queue.async(flags: .barrier) { [weak self] in
             self?.events[type, default: []].append(event)
         }
     }
     
-    func getEventsFilteredBy(types: [AnalyticsEventType]?, dateRange: ClosedRange<Date>?) -> [AnalyticsEvent] {
+    func getEventsFilteredBy(types: [AnalyticsEventType]?,
+                             dateRange: ClosedRange<Date>?
+    )
+        -> [AnalyticsEvent]
+    {
         self.queue.sync {
             let filteredEvents: [AnalyticsEvent]
             
