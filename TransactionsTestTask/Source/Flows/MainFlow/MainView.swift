@@ -21,6 +21,8 @@ fileprivate struct MainViewConstants {
 protocol MainView: BaseView {
     func setBpiLabel(text: String)
     func setBalanceLabel(text: String)
+    var addBitcoinsButtonTapHandler: (EventHandler)? { get set }
+    var addTransactionButtonHandler: (EventHandler)? { get set }
 }
 
 final class MainViewImpl: BaseUIViewImpl, MainView {
@@ -46,7 +48,7 @@ final class MainViewImpl: BaseUIViewImpl, MainView {
         return label
     }()
 
-    private lazy var addBalanceButton: UIButton = {
+    private lazy var addBitcoinsButton: UIButton = {
         let fontSize = MainViewConstants.fontSize
         var configuration = UIButton.Configuration.filled()
         configuration.image = .add
@@ -81,7 +83,7 @@ final class MainViewImpl: BaseUIViewImpl, MainView {
     private lazy var horizontalStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.addArrangedSubview(self.balanceLabel)
-        stackView.addArrangedSubview(self.addBalanceButton)
+        stackView.addArrangedSubview(self.addBitcoinsButton)
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.distribution = .equalSpacing
@@ -109,7 +111,7 @@ final class MainViewImpl: BaseUIViewImpl, MainView {
         return tableView
     }()
 
-    // MARK: - Init
+    // MARK: - BaseUIViewImpl
     
     override func addSubviews() {
         self.backgroundColor = .white
@@ -118,6 +120,24 @@ final class MainViewImpl: BaseUIViewImpl, MainView {
         self.addSubview(self.bpiLabel)
         self.setupConstraints()
     }
+    
+    // MARK: - Computed Properties
+    
+    var addBitcoinsButtonTapHandler: (EventHandler)? {
+        didSet {
+            let selector = #selector(self.addBalanceButtonTap)
+            self.addBitcoinsButton.addTarget(self, action: selector, for: .touchUpInside)
+        }
+    }
+    
+    var addTransactionButtonHandler: (EventHandler)? {
+        didSet {
+            let selector = #selector(self.addTransactionButtonTap)
+            self.addTransactionButton.addTarget(self, action: selector, for: .touchUpInside)
+        }
+    }
+    
+    // MARK: - Final Functions
     
     func setBpiLabel(text: String) {
         self.bpiLabel.text = text
@@ -128,6 +148,14 @@ final class MainViewImpl: BaseUIViewImpl, MainView {
     }
     
     // MARK: - Private Functions
+    
+    @objc private func addBalanceButtonTap() {
+        self.addBitcoinsButtonTapHandler?()
+    }
+    
+    @objc private func addTransactionButtonTap() {
+        self.addTransactionButtonHandler?()
+    }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate(self.stackViewConstraints())

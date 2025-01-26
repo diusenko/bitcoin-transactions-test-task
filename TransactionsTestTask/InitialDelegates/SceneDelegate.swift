@@ -54,22 +54,16 @@ extension SceneDelegate {
     private func createWindow(with scene: UIScene) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        let rootViewController = self.initializedViewController()
-        let coordinator = self.initializedCoordinator(with: rootViewController)
+        let viewModel = self.initializedMainViewModel()
+        let rootViewController = self.initializedViewController(with: viewModel)
+        let coordinator = self.initializedCoordinator(with: rootViewController, and: viewModel)
         window.rootViewController = coordinator
         self.window = window
         window.makeKeyAndVisible()
     }
     
-    // MARK: TODO: Need to create DependencyInjectorService
-    /// (Service Assembler) I think its supose to be this thing
-    private func initializedViewController() -> UIViewController {
-        let errorProcessor = ErrorProcessorImpl()
-        let responseProcessor = ResponseProcessorImpl()
-        let networkService = NetworkServiceImpl(errorProcessor: errorProcessor,
-                                                responseProcessor: responseProcessor)
-        let servicesAssembler = ServicesAssemblerImpl()
-        let viewModel = MainViewModelImpl(with: servicesAssembler)
+    private func initializedViewController(with viewModel: MainViewModelImpl) -> MainViewController<MainViewModelImpl,
+                                                                                                    MainViewImpl> {
         let view = MainViewImpl()
         let viewController = MainViewController<MainViewModelImpl, MainViewImpl>()
         viewController.attach(view: view)
@@ -78,9 +72,20 @@ extension SceneDelegate {
         return viewController
     }
     
-    private func initializedCoordinator(with viewController: UIViewController) -> UINavigationController {
-        let viewModel = AppCoordinatorViewModelImpl()
+    private func initializedMainViewModel() -> MainViewModelImpl {
+        let servicesAssembler = ServicesAssemblerImpl()
+        
+        return MainViewModelImpl(with: servicesAssembler)
+    }
+    
+    private func initializedCoordinator(with viewController: MainViewController<MainViewModelImpl, MainViewImpl>,
+                                        and mainViewModel: any MainViewModel
+    )
+        -> UINavigationController
+    {
+        let viewModel = AppCoordinatorViewModelImpl(mainViewModel: mainViewModel)
         let coordinator = AppCoordinator<AppCoordinatorViewModelImpl>(rootViewController: viewController)
+        coordinator.attach(mainViewController: viewController)
         coordinator.attach(with: viewModel)
         coordinator.start()
         

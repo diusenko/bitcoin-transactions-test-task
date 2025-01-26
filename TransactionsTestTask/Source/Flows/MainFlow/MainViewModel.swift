@@ -24,6 +24,7 @@ protocol MainViewModel: ViewModel where Events == MainViewModelEvents {
     func fetchBPIRate()
     func fetchTransactions()
     func fetchBalance()
+    func change(balance: Float)
 }
 
 // MARK: - MainViewModel
@@ -95,6 +96,15 @@ final class MainViewModelImpl: MainViewModel {
         }.store(in: &self.cancelable)
     }
     
+    // TODO: - Move this logic to BalanceService
+    func change(balance: Float) {
+        let currentBalance = accountBalance?.balance ?? 0
+        let model = AccountBalance(balance: balance + currentBalance)
+        self.accountBalance = model
+        let presentationModel = BalancePresentationModel(balance: model.balance)
+        self.subject.send(.balanceUpdated(presentationModel))
+    }
+    
     // MARK: Private Functions
     
     private func sendUpdatedBPIRateEvent(with model: BPIRate) {
@@ -108,7 +118,7 @@ final class MainViewModelImpl: MainViewModel {
     
     private func sendBalanceUpdatedEvent(with model: AccountBalance) {
         let presentationModel = BalancePresentationModel(balance: model.balance)
-        
+        self.accountBalance = AccountBalance(balance: model.balance)
         self.sendEventOnMain(.balanceUpdated(presentationModel))
     }
     

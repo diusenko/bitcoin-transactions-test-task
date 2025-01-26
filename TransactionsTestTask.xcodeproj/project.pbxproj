@@ -48,6 +48,8 @@
 		7923421D2D41A32500EDF716 /* DispatchQueueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7923421C2D41A32300EDF716 /* DispatchQueueExtension.swift */; };
 		792342222D424F4C00EDF716 /* SubscriberLoggerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792342212D424F4A00EDF716 /* SubscriberLoggerImpl.swift */; };
 		792342242D42786000EDF716 /* AnyBitcoinRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792342232D42785F00EDF716 /* AnyBitcoinRateService.swift */; };
+		792342292D46B4E800EDF716 /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792342282D46B4E700EDF716 /* UIAlertControllerExtension.swift */; };
+		7923422B2D46CB7C00EDF716 /* EventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7923422A2D46CB7A00EDF716 /* EventHandler.swift */; };
 		793B22992D3BE34F00720058 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B22982D3BE34D00720058 /* AppCoordinator.swift */; };
 		793B229C2D3BE63300720058 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B229B2D3BE62B00720058 /* MainViewController.swift */; };
 		793B229E2D3BE63E00720058 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793B229D2D3BE63800720058 /* MainViewModel.swift */; };
@@ -117,6 +119,8 @@
 		7923421C2D41A32300EDF716 /* DispatchQueueExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueExtension.swift; sourceTree = "<group>"; };
 		792342212D424F4A00EDF716 /* SubscriberLoggerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberLoggerImpl.swift; sourceTree = "<group>"; };
 		792342232D42785F00EDF716 /* AnyBitcoinRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyBitcoinRateService.swift; sourceTree = "<group>"; };
+		792342282D46B4E700EDF716 /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
+		7923422A2D46CB7A00EDF716 /* EventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHandler.swift; sourceTree = "<group>"; };
 		793B22982D3BE34D00720058 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		793B229B2D3BE62B00720058 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		793B229D2D3BE63800720058 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
@@ -174,6 +178,7 @@
 		0DF1D1412D22DCC3001626E7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				7923422A2D46CB7A00EDF716 /* EventHandler.swift */,
 				0DF1D1422D22DCD2001626E7 /* PerformOnce.swift */,
 			);
 			path = Helpers;
@@ -336,6 +341,7 @@
 				7923421C2D41A32300EDF716 /* DispatchQueueExtension.swift */,
 				792342032D412E0900EDF716 /* DateExtension.swift */,
 				792341FA2D41160B00EDF716 /* UITableViewExtension.swift */,
+				792342282D46B4E700EDF716 /* UIAlertControllerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -602,9 +608,11 @@
 				792341E32D3FCE2C00EDF716 /* NetworkErrors.swift in Sources */,
 				792341E92D3FF64500EDF716 /* BaseProtocols.swift in Sources */,
 				792341DA2D3E914C00EDF716 /* APIEndpoint.swift in Sources */,
+				792342292D46B4E800EDF716 /* UIAlertControllerExtension.swift in Sources */,
 				792341C82D3E5AD000EDF716 /* BPIRateEntities.swift in Sources */,
 				792341CC2D3E605E00EDF716 /* ErrorProcessor.swift in Sources */,
 				0DF1D1402D22DC51001626E7 /* ServicesAssembler.swift in Sources */,
+				7923422B2D46CB7C00EDF716 /* EventHandler.swift in Sources */,
 				7923420B2D41498900EDF716 /* AccountBalanceService.swift in Sources */,
 				792342112D41742300EDF716 /* BPIRatePresentationModel.swift in Sources */,
 				7923421A2D41A13900EDF716 /* Timer.swift in Sources */,

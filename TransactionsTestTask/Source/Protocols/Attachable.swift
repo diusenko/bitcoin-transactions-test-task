@@ -19,4 +19,4 @@ protocol ViewAttachable where Self: UIViewController {
     func attach(view: View)
 }
 
-protocol Attachable: ViewModelAttachable,ViewAttachable { }
+protocol Attachable: ViewModelAttachable, ViewAttachable { }

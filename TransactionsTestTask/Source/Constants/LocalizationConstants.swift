@@ -21,4 +21,12 @@ enum LocalizationConstants {
     enum MainViewConstants {
         static let addTransaction = "Add Transaction"
     }
+    
+    enum Alert {
+        static let title = "Fill up the account"
+        static let messageTitle = "How much you want add"
+        static let placeholder = "Enter bitcoins here"
+        static let okButtonTitle = "Ok"
+        static let cancelButtonTitle = "Cancel"
+    }
 }

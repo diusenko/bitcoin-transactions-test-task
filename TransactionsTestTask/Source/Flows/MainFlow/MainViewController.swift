@@ -8,15 +8,25 @@
 import UIKit
 import Combine
 
+enum MainViewControllerEvents {
+    case showRefilBalance
+    case showTransaction
+}
+
 // MARK: - MainViewControllerImpl
 
 final class MainViewController<ViewModel: MainViewModel,
                                View: MainView>:
-                               BaseViewController<ViewModel, View> {
+                               BaseViewController<ViewModel, View>, Eventable {
+    
+    var events: AnyPublisher<MainViewControllerEvents, Never>? {
+        self.subject.eraseToAnyPublisher()
+    }
     
     // MARK: - Private Properties
     
-    var cancellable: Set<AnyCancellable> = []
+    private var subject = PassthroughSubject<Events, Never>()
+    private var cancellable: Set<AnyCancellable> = []
     
     // MARK: - ViewController Lifecycle
     
@@ -25,6 +35,12 @@ final class MainViewController<ViewModel: MainViewModel,
         self.viewModel?.fetchBPIRate()
         self.viewModel?.fetchTransactions()
         self.viewModel?.fetchBalance()
+        self.uiView?.addBitcoinsButtonTapHandler = { [weak self] in
+            self?.subject.send(.showRefilBalance)
+        }
+        self.uiView?.addTransactionButtonHandler = { [weak self] in
+            self?.subject.send(.showTransaction)
+        }
     }
     
     // MARK: BaseViewController

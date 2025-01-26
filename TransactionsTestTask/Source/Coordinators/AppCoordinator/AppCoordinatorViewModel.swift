@@ -9,11 +9,15 @@ import Combine
 
 // MARK: - Types
 
-enum AppCoordinatorEvents { }
+enum AppCoordinatorEvents {
+    case showRisingBalance
+}
 
 // MARK: - Protocol
 
-protocol AppCoordinatorViewModel: Eventable where Events == AppCoordinatorEvents { }
+protocol AppCoordinatorViewModel: Eventable where Events == AppCoordinatorEvents {
+    func change(balance: Float)
+}
 
 // MARK: - MainViewModel
 
@@ -26,6 +30,15 @@ final class AppCoordinatorViewModelImpl: AppCoordinatorViewModel {
     }
     
     // MARK: - Private Properties
-    
+    private var mainViewModel: (any MainViewModel)?
     private var subject = PassthroughSubject<AppCoordinatorEvents, Never>()
+    
+    init(mainViewModel: any MainViewModel) {
+        self.mainViewModel = mainViewModel
+    }
+    
+    func change(balance: Float) {
+        self.mainViewModel?.change(balance: balance)
+    }
+    
 }

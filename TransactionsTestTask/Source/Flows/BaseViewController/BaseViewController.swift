@@ -66,7 +66,7 @@ extension BaseViewController {
     }
     
     /// Call methods for updating ViewModel  events after only after loadView.
-    /// Because View can not be assigned to View Controller
+    /// Because View can be not assigned to View Controller
     final func attach(view: View) {
         self.uiView = view
     }
