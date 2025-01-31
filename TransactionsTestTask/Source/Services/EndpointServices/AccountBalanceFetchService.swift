@@ -10,14 +10,14 @@ import Combine
 
 // MARK: - Crypto Price Service Protocol
 
-protocol AccountBalanceService {
+protocol AccountBalanceFetchService {
     
     func fetchBalance() -> AnyPublisher<AccountBalance, Error>
 }
 
 // MARK: - Crypto Price Service Implementation
 
-final class AccountBalanceServiceImpl: AccountBalanceService {
+final class AccountBalanceFetchServiceImpl: AccountBalanceFetchService {
     
     // MARK: - Private Properties
     

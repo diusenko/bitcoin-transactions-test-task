@@ -88,7 +88,7 @@ final class MainViewModelImpl: MainViewModel {
     }
     
     func fetchBalance() {
-        let accountBalanceService = self.servicesAssembler.accountBalanceService
+        let accountBalanceService = self.servicesAssembler.accountBalanceFetchService
         accountBalanceService.fetchBalance().sink { error in
             print(error)
         } receiveValue: { [weak self] model in
