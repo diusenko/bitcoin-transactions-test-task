@@ -167,8 +167,7 @@
 				792342252D42787700EDF716 /* BitcoinRateService */,
 				0DF1D1412D22DCC3001626E7 /* Helpers */,
 				0D15405F2D22EF3400D6D63F /* AnalyticsService */,
-				792341D32D3E8A2A00EDF716 /* EndpointServices */,
-				792341BD2D3E563C00EDF716 /* NetworkService */,
+				792341BD2D3E563C00EDF716 /* NetworkServices */,
 				0DF1D13F2D22DC4B001626E7 /* ServicesAssembler.swift */,
 				792342212D424F4A00EDF716 /* SubscriberLoggerImpl.swift */,
 			);
@@ -253,13 +252,14 @@
 			path = BaseViewController;
 			sourceTree = "<group>";
 		};
-		792341BD2D3E563C00EDF716 /* NetworkService */ = {
+		792341BD2D3E563C00EDF716 /* NetworkServices */ = {
 			isa = PBXGroup;
 			children = (
+				792341D32D3E8A2A00EDF716 /* EndpointServices */,
 				792341D92D3E914900EDF716 /* APIEndpoint.swift */,
 				792341C22D3E594200EDF716 /* NetworkService.swift */,
 			);
-			path = NetworkService;
+			path = NetworkServices;
 			sourceTree = "<group>";
 		};
 		792341BE2D3E56A100EDF716 /* Resources */ = {
