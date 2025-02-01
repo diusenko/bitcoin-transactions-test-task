@@ -13,11 +13,22 @@ import Combine
 /// Every successful fetch should be logged with analytics service
 /// The service should be covered by unit tests
 
-enum BitcoinRateServiceEvents {
+enum BitcoinRateServiceEvents: CustomStringConvertible {
     
     case bpiUpdated(BPIRate)
     case needsToSave(BPIRate)
     case updatingFailed(Error)
+    
+    var description: String {
+        switch self {
+        case .bpiUpdated(let model):
+            return ".bpiUpdated \(model)"
+        case .needsToSave(let model):
+            return ".needsToSave \(model)"
+        case .updatingFailed(let error):
+            return ".updatingFailed \(error)"
+        }
+    }
 }
 
 protocol BitcoinRateService: Eventable where Events == BitcoinRateServiceEvents {

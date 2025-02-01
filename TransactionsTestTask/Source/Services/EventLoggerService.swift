@@ -1,5 +1,5 @@
 //
-//  Untitled.swift
+//  EventLoggerService.swift
 //  TransactionsTestTask
 //
 //  Created by Dmytro Usenko on 23.01.2025.
@@ -7,13 +7,13 @@
 
 import Combine
 
-protocol SubscriberLogger {
+protocol EventLoggerService {
     
-    func addSubscription<T: Publisher>(publisher: T, with identifier: String) where T.Output: CustomStringConvertible, T.Failure: CustomStringConvertible
+    func addSubscription<T: Publisher>(publisher: T, with identifier: String) where T.Output: CustomStringConvertible
 }
 
 /// Object that subscribes to publishers, logs their output, and manages subscriptions.
-final class SubscriberLoggerImpl: SubscriberLogger {
+final class EventLoggerServiceImpl: EventLoggerService {
 
     // MARK: - Private Properties
 
@@ -23,7 +23,7 @@ final class SubscriberLoggerImpl: SubscriberLogger {
     // MARK: - Deinitializer
 
     deinit {
-        cancelAll()
+        self.cancelAll()
         let id = "\(type(of: self))"
         let text = "PublisherLogger deinitialized and all subscriptions cancelled."
         analyticsService.trackEvent(type: .deinited, parameters: [id : text])

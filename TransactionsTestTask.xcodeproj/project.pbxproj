@@ -46,7 +46,7 @@
 		792342132D417EF900EDF716 /* BalancePresentationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792342122D417EF500EDF716 /* BalancePresentationModel.swift */; };
 		7923421A2D41A13900EDF716 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792342192D41A13700EDF716 /* Timer.swift */; };
 		7923421D2D41A32500EDF716 /* DispatchQueueExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7923421C2D41A32300EDF716 /* DispatchQueueExtension.swift */; };
-		792342222D424F4C00EDF716 /* SubscriberLoggerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792342212D424F4A00EDF716 /* SubscriberLoggerImpl.swift */; };
+		792342222D424F4C00EDF716 /* EventLoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792342212D424F4A00EDF716 /* EventLoggerService.swift */; };
 		792342292D46B4E800EDF716 /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792342282D46B4E700EDF716 /* UIAlertControllerExtension.swift */; };
 		7923422B2D46CB7C00EDF716 /* EventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7923422A2D46CB7A00EDF716 /* EventHandler.swift */; };
 		792342312D4D35EF00EDF716 /* AccountBalanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7923422F2D4D35EF00EDF716 /* AccountBalanceService.swift */; };
@@ -117,7 +117,7 @@
 		792342122D417EF500EDF716 /* BalancePresentationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalancePresentationModel.swift; sourceTree = "<group>"; };
 		792342192D41A13700EDF716 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		7923421C2D41A32300EDF716 /* DispatchQueueExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueueExtension.swift; sourceTree = "<group>"; };
-		792342212D424F4A00EDF716 /* SubscriberLoggerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriberLoggerImpl.swift; sourceTree = "<group>"; };
+		792342212D424F4A00EDF716 /* EventLoggerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLoggerService.swift; sourceTree = "<group>"; };
 		792342282D46B4E700EDF716 /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
 		7923422A2D46CB7A00EDF716 /* EventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventHandler.swift; sourceTree = "<group>"; };
 		7923422F2D4D35EF00EDF716 /* AccountBalanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBalanceService.swift; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 				0D15405F2D22EF3400D6D63F /* AnalyticsService */,
 				792341BD2D3E563C00EDF716 /* NetworkServices */,
 				0DF1D13F2D22DC4B001626E7 /* ServicesAssembler.swift */,
-				792342212D424F4A00EDF716 /* SubscriberLoggerImpl.swift */,
+				792342212D424F4A00EDF716 /* EventLoggerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -628,7 +628,7 @@
 				79ACBF5B2D3D2B7A00EB9968 /* Eventable.swift in Sources */,
 				792341DF2D3FBC4300EDF716 /* ResponseProcessor.swift in Sources */,
 				792341B72D3D471700EDF716 /* AppCoordinatorViewModel.swift in Sources */,
-				792342222D424F4C00EDF716 /* SubscriberLoggerImpl.swift in Sources */,
+				792342222D424F4C00EDF716 /* EventLoggerService.swift in Sources */,
 				793B229C2D3BE63300720058 /* MainViewController.swift in Sources */,
 				793B229E2D3BE63E00720058 /* MainViewModel.swift in Sources */,
 			);

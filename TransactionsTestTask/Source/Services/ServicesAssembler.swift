@@ -34,6 +34,12 @@ final class ServicesAssemblerImpl: ServicesAssembler {
         return self._accountBalanceService
     }
     
+    // MARK: - Init
+    
+    init() {
+        self.fillEventLoggerService()
+    }
+    
     // MARK: - Private Lazy Properties
 
     private lazy var _transactionService: TransactionsService = {
@@ -84,14 +90,17 @@ final class ServicesAssemblerImpl: ServicesAssembler {
         return AnalyticsServiceImpl()
     }()
     
-    private lazy var _subscriberLogger: SubscriberLoggerImpl = {
-        let logger = SubscriberLoggerImpl(analyticsService: self._analyticsService)
-        
+    private lazy var _eventLoggerService: EventLoggerService = {
+        return EventLoggerServiceImpl(analyticsService: self._analyticsService)
+    }()
+}
+
+extension ServicesAssemblerImpl {
+    
+    private func fillEventLoggerService() {
         if let bpi = self._bitcoinRateService.events {
             let id = "\(type(of: self._bitcoinRateService))"
-            logger.addSubscription(publisher: bpi, with: id)
+            self._eventLoggerService.addSubscription(publisher: bpi, with: id)
         }
-        
-        return logger
-    }()
+    }
 }

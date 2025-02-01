@@ -9,6 +9,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    let servicesAssembler = ServicesAssemblerImpl()
 
     func scene(_ scene: UIScene,
                willConnectTo session: UISceneSession,
@@ -73,9 +74,7 @@ extension SceneDelegate {
     }
     
     private func initializedMainViewModel() -> MainViewModelImpl {
-        let servicesAssembler = ServicesAssemblerImpl()
-        
-        return MainViewModelImpl(with: servicesAssembler)
+        return MainViewModelImpl(with: self.servicesAssembler)
     }
     
     private func initializedCoordinator(with viewController: MainViewController<MainViewModelImpl, MainViewImpl>,
