@@ -45,7 +45,7 @@ final class MainViewModelImpl: MainViewModel {
     private var cancelable: Set<AnyCancellable> = []
     
     private var transactions: [TransactionDetail] = []
-    private var accountBalance: AccountBalance?
+    private var accountBalance: Float?
     private var currentPrice: BPIRate?
     
     // MARK: - Deinit
@@ -88,21 +88,19 @@ final class MainViewModelImpl: MainViewModel {
     }
     
     func fetchBalance() {
-        let accountBalanceService = self.servicesAssembler.accountBalanceFetchService
-        accountBalanceService.fetchBalance().sink { error in
+        let accountBalanceService = self.servicesAssembler.accountBalanceService
+        accountBalanceService.events?.sink { error in
             print(error)
-        } receiveValue: { [weak self] model in
-            self?.sendBalanceUpdatedEvent(with: model)
+        } receiveValue: { [weak self] events in
+            if case .balanceUpdated(let balance) = events {
+                self?.sendBalanceUpdatedEvent(with: balance)
+            }
         }.store(in: &self.cancelable)
+        accountBalanceService.emitFetchingBalance()
     }
     
-    // TODO: - Move this logic to BalanceService
     func change(balance: Float) {
-        let currentBalance = accountBalance?.balance ?? 0
-        let model = AccountBalance(balance: balance + currentBalance)
-        self.accountBalance = model
-        let presentationModel = BalancePresentationModel(balance: model.balance)
-        self.subject.send(.balanceUpdated(presentationModel))
+        self.servicesAssembler.accountBalanceService.addToBalance(value: balance)
     }
     
     // MARK: Private Functions
@@ -112,13 +110,12 @@ final class MainViewModelImpl: MainViewModel {
         let code = model.bpi.USD.code
         let presentationModel = BPIRatePresentationModel(rate: rate,
                                                          currencyCode: code)
-        
         self.sendEventOnMain(.bpiRateUpdated(presentationModel))
     }
     
-    private func sendBalanceUpdatedEvent(with model: AccountBalance) {
-        let presentationModel = BalancePresentationModel(balance: model.balance)
-        self.accountBalance = AccountBalance(balance: model.balance)
+    private func sendBalanceUpdatedEvent(with balance: Float) {
+        let presentationModel = BalancePresentationModel(balance: balance)
+        self.accountBalance = balance
         self.sendEventOnMain(.balanceUpdated(presentationModel))
     }
     

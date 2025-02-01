@@ -15,7 +15,7 @@
 protocol ServicesAssembler {
     var bitcoinRateService: AnyBitcoinRateService { get }
     var transactionService: TransactionsService { get }
-    var accountBalanceFetchService: AccountBalanceFetchService { get }
+    var accountBalanceService: any AccountBalanceService { get }
 }
 
 final class ServicesAssemblerImpl: ServicesAssembler {
@@ -30,14 +30,20 @@ final class ServicesAssemblerImpl: ServicesAssembler {
         return self._transactionService
     }
 
-    var accountBalanceFetchService: AccountBalanceFetchService {
-        return self._accountBalanceFetchService
+    var accountBalanceService: any AccountBalanceService {
+        return self._accountBalanceService
     }
     
     // MARK: - Private Lazy Properties
 
     private lazy var _transactionService: TransactionsService = {
         return TransactionsServiceImpl(networkService: self._networkService)
+    }()
+    
+    private lazy var _accountBalanceService: any AccountBalanceService = {
+        let balanceFetcher = self._accountBalanceFetchService
+        
+        return AccountBalanceServiceImpl(balanceFetchService: balanceFetcher)
     }()
     
     private lazy var _bitcoinRateService: AnyBitcoinRateService = {
