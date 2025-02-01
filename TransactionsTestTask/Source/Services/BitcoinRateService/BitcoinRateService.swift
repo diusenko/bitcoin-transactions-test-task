@@ -20,7 +20,7 @@ enum BitcoinRateServiceEvents {
     case updatingFailed(Error)
 }
 
-protocol BitcoinRateService: Eventable {
+protocol BitcoinRateService: Eventable where Events == BitcoinRateServiceEvents {
     func startUpdating()
 }
 

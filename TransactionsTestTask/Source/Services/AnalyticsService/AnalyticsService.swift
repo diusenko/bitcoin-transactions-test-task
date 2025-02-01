@@ -22,6 +22,7 @@ protocol AnalyticsService: AnyObject {
 final class AnalyticsServiceImpl {
     
     private var events: [AnalyticsEventType: [AnalyticsEvent]] = [:]
+    private var logger = Logger()
     private let queue = DispatchQueue(label: "com.analytics.service", attributes: .concurrent)
     
     // MARK: - Init
@@ -33,13 +34,12 @@ extension AnalyticsServiceImpl: AnalyticsService {
     func trackEvent(type: AnalyticsEventType,
                     parameters: [String: String]
     ) {
-        let logger = Logger()
         let event = AnalyticsEvent(
             type: type,
             parameters: parameters,
             date: .now
         )
-        logger.debug("\(event.description)")
+        self.logger.debug("\(event.description)")
         self.queue.async(flags: .barrier) { [weak self] in
             self?.events[type, default: []].append(event)
         }

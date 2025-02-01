@@ -13,7 +13,7 @@
 /// Make this logic not depending on any module
 
 protocol ServicesAssembler {
-    var bitcoinRateService: AnyBitcoinRateService { get }
+    var bitcoinRateService: any BitcoinRateService { get }
     var transactionService: TransactionsService { get }
     var accountBalanceService: any AccountBalanceService { get }
 }
@@ -22,7 +22,7 @@ final class ServicesAssemblerImpl: ServicesAssembler {
 
     // MARK: - Public Lazy Properties
 
-    var bitcoinRateService: AnyBitcoinRateService {
+    var bitcoinRateService: any BitcoinRateService {
         return self._bitcoinRateService
     }
     
@@ -46,13 +46,11 @@ final class ServicesAssemblerImpl: ServicesAssembler {
         return AccountBalanceServiceImpl(balanceFetchService: balanceFetcher)
     }()
     
-    private lazy var _bitcoinRateService: AnyBitcoinRateService = {
-        let concreteService = BitcoinRateServiceImpl(
+    private lazy var _bitcoinRateService: any BitcoinRateService = {
+        return BitcoinRateServiceImpl(
             bpiRateFetcherService: self._bpiRateFetcherService,
             timer: self._timer
         )
-        
-        return AnyBitcoinRateService(concreteService)
     }()
     
     private lazy var _accountBalanceFetchService: AccountBalanceFetchService = {
