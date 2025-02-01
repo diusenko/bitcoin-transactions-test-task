@@ -72,7 +72,7 @@ final class BitcoinRateServiceImpl: BitcoinRateService {
     
     func startUpdating() {
         if !self.timer.isRunning {
-            self.timer.startTimer(interval: 2,
+            self.timer.startTimer(interval: 200,
                                   queue: self.customSerialQueue
             ) { [weak self] in
                 self?.fetchBPIRate()
