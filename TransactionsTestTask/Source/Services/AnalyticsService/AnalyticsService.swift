@@ -45,6 +45,7 @@ extension AnalyticsServiceImpl: AnalyticsService {
         }
     }
     
+    /// Needs to fix copy on write for more productivity
     func getEventsFilteredBy(types: [AnalyticsEventType]?,
                              dateRange: ClosedRange<Date>?
     )

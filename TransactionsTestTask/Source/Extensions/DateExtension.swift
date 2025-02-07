@@ -10,7 +10,10 @@ import Foundation
 extension Date {
     
     static func date(from dateInterval: TimeInterval,
-                     and timeInterval: TimeInterval) -> Date {
+                     and timeInterval: TimeInterval
+    )
+        -> Date
+    {
         let combinedInterval = dateInterval + timeInterval
         
         return Date(timeIntervalSince1970: combinedInterval)

@@ -26,7 +26,7 @@ final class EventLoggerServiceImpl: EventLoggerService {
         self.cancelAll()
         let id = "\(type(of: self))"
         let text = "PublisherLogger deinitialized and all subscriptions cancelled."
-        analyticsService.trackEvent(type: .deinited, parameters: [id : text])
+        self.analyticsService.trackEvent(type: .deinited, parameters: [id : text])
     }
     
     // MARK: - Initializer
@@ -68,6 +68,6 @@ final class EventLoggerServiceImpl: EventLoggerService {
     
     /// Cancels all active subscriptions.
     private func cancelAll() {
-        cancellables.removeAll()
+        self.cancellables.removeAll()
     }
 }

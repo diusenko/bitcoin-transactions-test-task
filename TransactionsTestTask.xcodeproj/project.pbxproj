@@ -166,7 +166,6 @@
 			children = (
 				792342302D4D35EF00EDF716 /* AccountBalanceSerice */,
 				792342252D42787700EDF716 /* BitcoinRateService */,
-				0DF1D1412D22DCC3001626E7 /* Helpers */,
 				0D15405F2D22EF3400D6D63F /* AnalyticsService */,
 				792341BD2D3E563C00EDF716 /* NetworkServices */,
 				0DF1D13F2D22DC4B001626E7 /* ServicesAssembler.swift */,
@@ -421,6 +420,7 @@
 				792341CD2D3E625300EDF716 /* Constants */,
 				792341C92D3E5AD500EDF716 /* Entities */,
 				79ACBF552D3D2B3800EB9968 /* Protocols */,
+				0DF1D1412D22DCC3001626E7 /* Helpers */,
 				792341F92D4115FA00EDF716 /* Extensions */,
 				792341E02D3FC07000EDF716 /* Processors */,
 				0DF1D13E2D22DC2D001626E7 /* Services */,
